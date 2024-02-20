@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
+
+body{
+font-family: "Roboto", sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.dashboard{
+  display: flex;
+}
+.container-tarefas{
+  margin: 16px 8px;
+}
+.coluna{
+  background-color: #F6F6F6;
+  min-height: 100px;
+  min-width: 300px;
+  border-radius: 8px;
+  margin: 0 8px;
+}
+.title, .title-doing, .title-done{
+color: white;
+border-radius: 8px 8px 0 0;
+text-align: center;
+margin: 0;
+padding: 12px;
+}
+.title{
+  background-color: #5492F7;
+}
+.title-doing{
+  background-color: #F5A03B;
+}
+.title-done{
+  background-color: #18E469;
+}
+  .tarefa{
+  margin: 8px;
+}
+
+.form-container{
+  display: flex;
+  margin: 8px 8px 16px 8px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.input{
+  margin: 0 4px 16px 0;
+}
+.tarefa-text{
+  background-color: white;
+  padding: 8px 16px ;
+  border-radius: 4px;
+}
+.button-add{
+  background-color: rgb(9, 164, 253);
+  color: white;
+  font-weight: 800;
+  border-radius: 100px;
+  border: none;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+}
