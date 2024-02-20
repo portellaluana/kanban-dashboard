@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body{
 font-family: "Roboto", sans-serif;
@@ -48,13 +48,21 @@ padding: 12px;
 .input{
   margin: 0 4px 16px 0;
 }
-.tarefa-text{
+.tarefa-container{
   background-color: white;
   padding: 8px 16px ;
   border-radius: 4px;
 }
+.tarefa-title{
+font-weight: 500;
+margin: 0;
+}
+.tarefa-description{
+font-weight: 300;
+margin: 4px 0 0 0;
+}
 .button-add{
-  background-color: rgb(9, 164, 253);
+  background-color: black;
   color: white;
   font-weight: 800;
   border-radius: 100px;

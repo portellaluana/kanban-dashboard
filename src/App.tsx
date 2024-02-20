@@ -1,6 +1,6 @@
-import { Doing } from "./Doing";
-import { Done } from "./Done";
-import  Todo  from "./Todo";
+import  Doing  from "./components/doing/Doing";
+import { Done } from "./components/done/Done";
+import  Todo  from "./components/todo/Todo";
 
 function App() {
   return (
