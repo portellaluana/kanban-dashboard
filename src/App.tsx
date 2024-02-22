@@ -1,10 +1,12 @@
-import Dashboard from "./components/Dashboard";
+import {LoginModal} from './components/LoginModal';
 
 function App() {
+
+
   return (
-    <div className="dashboard">
-      <Dashboard/>
-    </div>
+    <>
+      <LoginModal/>
+  </>
   );
 }
 

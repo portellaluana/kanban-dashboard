@@ -87,3 +87,37 @@ bottom: 230px;
 h4{
   margin: 8px;
 }
+.modal-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+}
+.modal-content{
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.modal-input, .modal-button{
+  margin: 8px 0;
+min-width: 200px;
+min-height: 24px;
+border: 1px solid rgb(4, 103, 143);
+border-radius: 4px;
+
+}
+
+.modal-button{
+  background-color: rgb(4, 103, 143);
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 300;
+  cursor: pointer;
+}
+h2{
+color: rgb(4, 103, 143);
+text-align: center;
+}
