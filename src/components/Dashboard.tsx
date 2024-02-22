@@ -1,20 +1,40 @@
 import { Tarefa } from "../Tarefa";
 import { useState, useEffect } from "react";
-import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
+
+interface TarefasProps {
+  id: string;
+  name: string;
+  description: string;
+  status: string;
+}
+
+interface ColunaProps {
+  id: string;
+  title: string;
+  tasks: TarefasProps[];
+}
 
 function Dashboard() {
-  const [colunas, setColunas] = useState([
+  const [colunas, setColunas] = useState<ColunaProps[]>([
     { id: "tarefas-a-fazer", title: "A fazer", tasks: [] },
     { id: "tarefas-fazendo", title: "Fazendo", tasks: [] },
     { id: "tarefas-prontas", title: "Prontos", tasks: [] },
   ]);
 
-  const [nomeTarefa, setNomeTarefa] = useState("");
-  const [descricaoTarefa, setDescricaoTarefa] = useState("");
-  const [statusTarefa, setStatusTarefa] = useState("a-fazer");
-  const [open, setOpen] = useState(false);
+  const [nomeTarefa, setNomeTarefa] = useState<string>("");
+  const [descricaoTarefa, setDescricaoTarefa] = useState<string>("");
+  const [statusTarefa, setStatusTarefa] = useState<string>("a-fazer");
+  const [open, setOpen] = useState<boolean>(false);
 
-  function handleAddTask(nomeTarefa, descricaoTarefa, statusTarefa) {
+  function handleAddTask(
+    nomeTarefa: string,
+    descricaoTarefa: string,
+    statusTarefa: string
+  ) {
+    if (nomeTarefa === "" || descricaoTarefa === "") {
+      return;
+    }
     if (statusTarefa === "feito") {
       const colunaFeito = colunas.find(
         (coluna) => coluna.id === "tarefas-prontas"
@@ -70,13 +90,13 @@ function Dashboard() {
     window.location.reload();
   }
 
-  function onDragEnd(result) {
+  function onDragEnd(result: DropResult) {
     if (!result.destination) {
       return;
     }
 
-    const indexColunaAnterior = parseInt(result.source.droppableId, 10);
-    const indexColunaDestino = parseInt(result.destination.droppableId, 10);
+    const indexColunaAnterior = result.source.droppableId;
+    const indexColunaDestino = result.destination.droppableId;
 
     const indexAnterior = result.source.index;
     const indexDestino = result.destination.index;
@@ -98,9 +118,10 @@ function Dashboard() {
 
   localStorage.removeItem;
 
-  function atualizaLocalStorage(colunas) {
+  function atualizaLocalStorage(colunas: ColunaProps[]) {
     colunas.forEach((coluna) => {
       localStorage.setItem(coluna.id, JSON.stringify(coluna.tasks));
+      console.log(colunas);
     });
   }
 
@@ -109,22 +130,22 @@ function Dashboard() {
     console.log(open);
   }
 
-  // function handleDeleteTask(colunaId, taskId) {
-  //   const atualizaColunas = [...colunas];
-  //   const colunaAlvo = atualizaColunas.find((coluna) => coluna.id === colunaId);
+  function handleDeleteTask(colunaId: string, taskId: string) {
+    const atualizaColunas = [...colunas];
+    const colunaAlvo = atualizaColunas.find((coluna) => coluna.id === colunaId);
 
-  //   if (colunaAlvo) {
-  //     const indexTarefaNaColuna = colunaAlvo.tasks.findIndex(
-  //       (task) => task.id === taskId
-  //     );
+    if (colunaAlvo) {
+      const indexTarefaNaColuna = colunaAlvo.tasks.findIndex(
+        (task) => task.id === taskId
+      );
 
-  //     if (indexTarefaNaColuna !== -1) {
-  //       colunaAlvo.tasks.splice(indexTarefaNaColuna, 1);
-  //       setColunas(atualizaColunas);
-  //       atualizaLocalStorage(atualizaColunas);
-  //     }
-  //   }
-  // }
+      if (indexTarefaNaColuna !== -1) {
+        colunaAlvo.tasks.splice(indexTarefaNaColuna, 1);
+        setColunas(atualizaColunas);
+        atualizaLocalStorage(atualizaColunas);
+      }
+    }
+  }
 
   useEffect(() => {
     const storedcolunas = colunas.map((coluna) => ({
@@ -204,9 +225,9 @@ function Dashboard() {
                       <Tarefa
                         key={task.id}
                         task={task}
-                        // onDelete={(colunaId, taskId) =>
-                        //   handleDeleteTask(colunaId, taskId)
-                        // }
+                        onDelete={(colunaId, taskId) =>
+                          handleDeleteTask(colunaId, taskId)
+                        }
                       />
                     ))}
                     {provided.placeholder}
