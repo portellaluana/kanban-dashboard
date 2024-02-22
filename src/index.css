@@ -1,115 +1,137 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-body{
-font-family: "Roboto", sans-serif;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-.dashboard{
+body {
+  font-family: "Roboto", sans-serif;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.container-tarefas{
+h2 {
+  color: black;
+  text-align: center;
+}
+input,
+textarea,
+select {
+  width: 100%;
   margin: 16px 8px;
+  padding: 0;
 }
-.coluna{
-  background-color: #F6F6F6;
-  min-height: 100px;
+form {
+  display: inline-flex;
+  flex-direction: row;
+  margin: 16px 0;
+  width: 100%;
+}
+h4 {
+  margin: 8px;
+  padding: 8px;
+}
+.dashboard {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1080px;
+}
+.colunas {
+  grid-gap: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.coluna {
   min-width: 300px;
-  border-radius: 8px;
-  margin: 0 8px;
-}
-.title, .title-doing, .title-done{
-color: white;
-border-radius: 8px 8px 0 0;
-text-align: center;
-margin: 0;
-padding: 12px;
-}
-.title{
-  background-color: #5492F7;
-}
-.title-doing{
-  background-color: #F5A03B;
-}
-.title-done{
-  background-color: #18E469;
-}
-  .tarefa{
+  background-color: #f6f6f6;
+  min-height: 200px;
   margin: 8px;
 }
-
-
-.input{
-  margin: 0 4px 16px 0;
+.tarefa {
+  margin: 8px;
 }
-.tarefa-container{
+.tarefa-container {
   background-color: white;
-  padding: 8px 16px ;
+  padding: 8px 16px;
   border-radius: 4px;
 }
-.tarefa-title{
-font-weight: 500;
-margin: 0;
+.tarefa-title {
+  font-weight: 500;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
 }
-.tarefa-description{
-font-weight: 300;
-margin: 4px 0 0 0;
-}
-.button-add{
-  background-color: black;
-  color: white;
+.tarefa-title button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(175, 175, 175);
   font-weight: 800;
   border-radius: 100px;
   border: none;
   width: 20px;
   height: 20px;
-  align-items: center;
-  justify-content: center;
-}
-.column{
-  min-width: 300px;
-  background-color: #F6F6F6;
-
-  min-height: 200px;
-}
-.dashboard{
+  text-align: end;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.tarefa-description {
+  font-weight: 300;
+  margin: 4px 0 0 0;
+}
+.button-add {
+  background-color: black;
+  color: white;
+  padding: 8px 16px;
+  font-weight: 800;
+  border-radius: 4px;
+  border: none;
   align-items: center;
-  position: relative;
-  top: 50px;
+  justify-content: center;
+  width: 100%;
+  margin: 16px 8px;
 }
-.form-container{
-position: absolute;
-bottom: 230px;
+.button-plus {
+  background-color: black;
+  color: white;
+  font-weight: 800;
+  border-radius: 100px;
+  border: none;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
 }
-h4{
-  margin: 8px;
+.form-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0;
 }
-.modal-container{
+.modal-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-
 }
-.modal-content{
+.modal-content {
   display: inline-flex;
   flex-direction: column;
 }
-
-.modal-input, .modal-button{
+.modal-input,
+.modal-button {
   margin: 8px 0;
-min-width: 200px;
-min-height: 24px;
-border: 1px solid rgb(4, 103, 143);
-border-radius: 4px;
-
+  min-width: 200px;
+  min-height: 24px;
+  border: 1px solid black;
+  border-radius: 4px;
 }
-
-.modal-button{
-  background-color: rgb(4, 103, 143);
+.modal-button {
+  background-color: black;
   padding: 8px;
   border: none;
   border-radius: 4px;
@@ -117,7 +139,10 @@ border-radius: 4px;
   font-weight: 300;
   cursor: pointer;
 }
-h2{
-color: rgb(4, 103, 143);
-text-align: center;
+
+@media screen and (max-width: 1040px) {
+  .columns {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
 }

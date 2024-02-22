@@ -1,4 +1,4 @@
-import { Draggable } from '@hello-pangea/dnd'
+import { Draggable } from "@hello-pangea/dnd";
 
 interface TarefaProps {
   task: {
@@ -8,11 +8,10 @@ interface TarefaProps {
     column: string;
   };
   index: number;
+  onDelete: (index: number, column: string) => void;
 }
 
-export function Tarefa({ task, index }: TarefaProps) {
-
-  
+export function Tarefa({ task, index, onDelete }: TarefaProps) {
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
@@ -23,7 +22,10 @@ export function Tarefa({ task, index }: TarefaProps) {
           className="tarefa"
         >
           <div className="tarefa-container">
-            <p className="tarefa-title">{task.name}</p>
+            <p className="tarefa-title">
+              {task.name}
+              <button onClick={() => onDelete(index, task.column)}>X</button>
+            </p>
             <p className="tarefa-description">{task.description}</p>
           </div>
         </div>
