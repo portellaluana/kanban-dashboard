@@ -24,7 +24,9 @@ export function Tarefa({ task, index, onDelete }: TarefaProps) {
           <div className="tarefa-container">
             <p className="tarefa-title">
               {task.name}
-              <button onClick={() => onDelete(index, task.column)}>X</button>
+              <button onClick={() => onDelete(index, task.column)}>
+                <a className="menu-icon" />
+              </button>
             </p>
             <p className="tarefa-description">{task.description}</p>
           </div>

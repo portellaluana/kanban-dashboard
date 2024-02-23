@@ -12,6 +12,7 @@ body {
 h2 {
   color: black;
   text-align: center;
+  margin: 0;
 }
 input,
 textarea,
@@ -140,9 +141,32 @@ h4 {
   cursor: pointer;
 }
 
-.cadastro-content{
-  background-color: yellow;
+.logo {
+  background-image: url(./assets/logo.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 70px;
+  margin: 32px 0;
 }
+.menu-icon {
+  background-image: url(./assets/menu.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 70px;
+  margin: 32px 0;
+}
+
+.logo-off {
+  background-image: url(./assets/logo-off.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 70px;
+  margin: 32px 0;
+}
+
 @media screen and (max-width: 1040px) {
   .colunas {
     grid-template-columns: 1fr;
