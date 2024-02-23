@@ -140,6 +140,9 @@ h4 {
   cursor: pointer;
 }
 
+.cadastro-content{
+  background-color: yellow;
+}
 @media screen and (max-width: 1040px) {
   .colunas {
     grid-template-columns: 1fr;
