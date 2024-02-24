@@ -7,7 +7,7 @@ export const Provider = ({ children }) => {
   const [userPassword, setUserPassword] = useState("");
   const [confirmaUserPassword, setConfirmaUserPassword] = useState("");
   const [user, setUser] = useState([]);
-  const [logo, setLogoOff] = useState(true);
+  const [logo, setLogoOff] = useState<boolean>(true);
 
   const [nomeTarefa, setNomeTarefa] = useState<string>("");
   const [descricaoTarefa, setDescricaoTarefa] = useState<string>("");

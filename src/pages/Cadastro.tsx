@@ -85,7 +85,7 @@ export const Cadastro = () => {
               onBlur={changeLogo}
               onChange={(e) => setConfirmaUserPassword(e.target.value)}
             />
-            <Link to="/dashboard">
+            <Link to="/kanban-dashboard/dashboard">
               <Button
                 type="submit"
                 onClick={handleLogin}

@@ -222,7 +222,7 @@ function Dashboard() {
             </Button>
           </div>
         )}
-        <Link to="/login">
+        <Link to="/kanban-dashboard/login">
           <Button type="submit" className="botao-secundario" onClick={deslogar}>
             deslogar
           </Button>

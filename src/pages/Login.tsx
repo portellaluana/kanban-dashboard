@@ -76,7 +76,7 @@ export const Login = () => {
             >
               fazer login
             </Button>
-            <Link to="/cadastro">
+            <Link to="/kanban-dashboard/cadastro">
               <p className="text-center">Não tem cadastro? <span className="botao-secundario">Cadastre-se</span></p>
             </Link>
           </div>
