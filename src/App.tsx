@@ -1,16 +1,10 @@
-import {LoginModal} from './components/LoginModal';
-import {Cadastro} from './components/Cadastro';
-
+import { Cadastro } from "./components/Cadastro";
 
 function App() {
-
-
   return (
     <>
-      <Cadastro/>
-      {/* <LoginModal/> */}
-
-  </>
+      <Cadastro />
+    </>
   );
 }
 

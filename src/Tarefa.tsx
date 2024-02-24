@@ -1,4 +1,5 @@
 import { Draggable } from "@hello-pangea/dnd";
+import { useState } from "react";
 
 interface TarefaProps {
   task: {
@@ -8,10 +9,15 @@ interface TarefaProps {
     column: string;
   };
   index: number;
-  onDelete: (index: number, column: string) => void;
 }
 
-export function Tarefa({ task, index, onDelete }: TarefaProps) {
+export function Tarefa({ task, index }: TarefaProps) {
+  const [open, setOpen] = useState<boolean>(false);
+
+  function openModalSets() {
+    setOpen(!open);
+  }
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
@@ -24,9 +30,19 @@ export function Tarefa({ task, index, onDelete }: TarefaProps) {
           <div className="tarefa-container">
             <p className="tarefa-title">
               {task.name}
-              <button onClick={() => onDelete(index, task.column)}>
-                <a className="menu-icon" />
-              </button>
+              {open ? (
+                <div className="modal-sets">
+                  <div className="background-modal-sets">
+                    <button onClick={openModalSets}>x</button>
+                    <button className="button-editar">editar tarefa</button>
+                    <button className="button-excluir">excluir tarefa</button>
+                  </div>
+                </div>
+              ) : (
+                <button onClick={openModalSets} className="button-sets">
+                  <a className="menu-icon" />
+                </button>
+              )}
             </p>
             <p className="tarefa-description">{task.description}</p>
           </div>

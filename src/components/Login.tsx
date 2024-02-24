@@ -5,10 +5,11 @@ export const LoginModal = () => {
   const [userEmailLogin, setUserEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
   const [user, setUser] = useState([]);
+  const [logo, setLogoOff] = useState(true);
 
   const handleLogin = () => {
     const cadastro = localStorage.getItem("cadastro");
-    console.log(cadastro?.includes(userEmailLogin));
+
     if (
       !cadastro?.includes(userEmailLogin) ||
       !cadastro?.includes(passwordLogin) ||
@@ -23,6 +24,10 @@ export const LoginModal = () => {
     window.location.reload();
   };
 
+  function changeLogo() {
+    setLogoOff(!logo);
+  }
+
   return (
     <>
       {localStorage.getItem("usuario") ? (
@@ -31,7 +36,11 @@ export const LoginModal = () => {
         <div className="modal-container">
           <div className="modal-content">
             <h2>Login</h2>
-
+            {logo ? (
+              <a className="logo-icon" />
+            ) : (
+              <a className="logo-icon-off" />
+            )}
             <input
               type="text"
               placeholder="Email"
@@ -46,6 +55,8 @@ export const LoginModal = () => {
               placeholder="Senha"
               value={passwordLogin}
               onChange={(e) => setPasswordLogin(e.target.value)}
+              onFocus={changeLogo}
+              onBlur={changeLogo}
             />
             <button
               type="submit"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LoginModal } from "./LoginModal";
+import { LoginModal } from "./Login";
 
 export const Cadastro = () => {
   const [userName, setUserName] = useState("");
@@ -20,9 +20,7 @@ export const Cadastro = () => {
       const novoCadastro = { userName, userEmail, userPassword };
       localStorage.setItem("cadastro", JSON.stringify([...user, novoCadastro]));
     }
-    console.log(
-      "setUserName, setUserEmail, setUserPassword, setConfirmaUserPassword"
-    );
+
     window.location.reload();
   };
   function changeLogo() {
