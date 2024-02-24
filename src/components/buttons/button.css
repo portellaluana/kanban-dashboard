@@ -1,4 +1,4 @@
-.modal-button {
+.botao-primario {
   margin: 8px 0;
   min-height: 48px;
   background-color: black;
@@ -8,9 +8,21 @@
   color: white;
   font-weight: 300;
   cursor: pointer;
+  width: 100%;
 }
-.modal-button:hover {
+.botao-primario:hover {
   background-color: rgb(26, 26, 26);
+}
+.botao-secundario {
+  margin: 8px 0;
+  min-height: 48px;
+  background-color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
 }
 .button-editar,
 .button-excluir {

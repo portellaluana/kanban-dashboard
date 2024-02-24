@@ -3,6 +3,7 @@ import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 import Button from "../components/buttons/Button";
 import Input from "../components/inputs/input";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const {
@@ -14,6 +15,7 @@ export const Login = () => {
     setUserEmail,
     userPassword,
     setUserPassword,
+    logado, setLogado
   } = useContext(AppContext);
 
   const handleLogin = () => {
@@ -30,6 +32,8 @@ export const Login = () => {
       const newUser = { userEmail, userPassword };
       localStorage.setItem("usuario", JSON.stringify([...user, newUser]));
     }
+    setLogado(!logado)
+    localStorage.setItem("logado", JSON.stringify(!logado));
     window.location.reload();
   };
 
@@ -39,7 +43,7 @@ export const Login = () => {
 
   return (
     <>
-      {localStorage.getItem("usuario") ? (
+      {localStorage.getItem("usuario")? (
         <Dashboard />
       ) : (
         <div className="modal-container">
@@ -68,10 +72,13 @@ export const Login = () => {
             <Button
               type="submit"
               onClick={handleLogin}
-              className="modal-button"
+              className="botao-primario"
             >
               fazer login
             </Button>
+            <Link to="/cadastro">
+              <p className="text-center">Não tem cadastro? <span className="botao-secundario">Cadastre-se</span></p>
+            </Link>
           </div>
         </div>
       )}

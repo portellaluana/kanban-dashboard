@@ -23,6 +23,13 @@ select {
   margin: 16px 8px;
   box-sizing: border-box;
 }
+a{
+  text-decoration: none;
+}
+.text-center{
+  color: black;
+  text-align: center;
+}
 form {
   display: inline-flex;
   flex-direction: row;

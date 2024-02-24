@@ -2,9 +2,10 @@ import { Tarefa } from "../Tarefa";
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
 import { AppContext } from "../context/AppContext";
-import { useContext,  } from "react";
+import { useContext } from "react";
 import Button from "../components/buttons/Button";
 import Input from "../components/inputs/input";
+import { Link } from "react-router-dom";
 
 interface TarefasProps {
   id: string;
@@ -27,10 +28,16 @@ function Dashboard() {
   ]);
 
   const {
-    nomeTarefa, setNomeTarefa,
-    descricaoTarefa, setDescricaoTarefa,
-    statusTarefa, setStatusTarefa,
-    open, setOpen
+    nomeTarefa,
+    setNomeTarefa,
+    descricaoTarefa,
+    setDescricaoTarefa,
+    statusTarefa,
+    setStatusTarefa,
+    open,
+    setOpen,
+    logado,
+    setLogado,
   } = useContext(AppContext);
 
   function handleAddTask(
@@ -153,6 +160,11 @@ function Dashboard() {
     }
   }
 
+  function deslogar() {
+    setLogado(logado);
+    localStorage.setItem("logado", JSON.stringify(logado));
+  }
+
   useEffect(() => {
     const storedcolunas = colunas.map((coluna) => ({
       ...coluna,
@@ -176,7 +188,8 @@ function Dashboard() {
               placeholder="Título da tarefa"
               className="input"
               value={nomeTarefa}
-              onChange={(event) => setNomeTarefa(event.target.value)}/>
+              onChange={(event) => setNomeTarefa(event.target.value)}
+            />
             <textarea
               placeholder="Descrição da tarefa"
               className="input"
@@ -209,7 +222,11 @@ function Dashboard() {
             </Button>
           </div>
         )}
-
+        <Link to="/login">
+          <Button type="submit" className="botao-secundario" onClick={deslogar}>
+            deslogar
+          </Button>
+        </Link>
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="colunas">
             {colunas.map((coluna, indexColuna) => (

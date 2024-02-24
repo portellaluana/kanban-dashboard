@@ -13,6 +13,8 @@ export const Provider = ({ children }) => {
   const [descricaoTarefa, setDescricaoTarefa] = useState<string>("");
   const [statusTarefa, setStatusTarefa] = useState<string>("a-fazer");
   const [open, setOpen] = useState<boolean>(false);
+  const [logado, setLogado] = useState<boolean>(false);
+
 
   const value = {
     userName, setUserName,
@@ -24,7 +26,8 @@ export const Provider = ({ children }) => {
     nomeTarefa, setNomeTarefa,
     descricaoTarefa, setDescricaoTarefa,
     statusTarefa, setStatusTarefa,
-    open, setOpen
+    open, setOpen,
+    logado, setLogado
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

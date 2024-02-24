@@ -1,8 +1,10 @@
 import { Login } from "./Login";
 import { AppContext } from "../context/AppContext";
-import { useContext,  } from "react";
+import { useContext } from "react";
 import Button from "../components/buttons/Button";
 import Input from "../components/inputs/input";
+import { Link } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 export const Cadastro = () => {
   const {
@@ -16,7 +18,9 @@ export const Cadastro = () => {
     setConfirmaUserPassword,
     user,
     setUser,
-    logo, setLogoOff
+    logo,
+    setLogoOff,
+    logado, setLogado
   } = useContext(AppContext);
 
   const handleLogin = () => {
@@ -29,6 +33,8 @@ export const Cadastro = () => {
     } else {
       const novoCadastro = { userName, userEmail, userPassword };
       localStorage.setItem("cadastro", JSON.stringify([...user, novoCadastro]));
+      setLogado(!logado)
+      localStorage.setItem("logado", JSON.stringify(!logado));
     }
 
     window.location.reload();
@@ -39,7 +45,7 @@ export const Cadastro = () => {
   return (
     <>
       {localStorage.getItem("cadastro") ? (
-        <Login />
+        <Dashboard />
       ) : (
         <div className="modal-container">
           <div className="modal-content">
@@ -61,28 +67,33 @@ export const Cadastro = () => {
             />
 
             <Input
-                type="password"
-                className="modal-input input-ativo"
-                placeholder="Senha"
-                value={userPassword}
-                onChange={(e) => setUserPassword(e.target.value)}
-                onFocus={changeLogo}
-                onBlur={changeLogo} />
+              type="password"
+              className="modal-input input-ativo"
+              placeholder="Senha"
+              value={userPassword}
+              onChange={(e) => setUserPassword(e.target.value)}
+              onFocus={changeLogo}
+              onBlur={changeLogo}
+            />
 
             <Input
-                type="password"
-                className="modal-input input-ativo"
-                placeholder="Confirmação de senha"
-                value={confirmaUserPassword}
-                onFocus={changeLogo}
-                onBlur={changeLogo}
-                onChange={(e) => setConfirmaUserPassword(e.target.value)}/>
-            <Button
-              type="submit"
-              onClick={handleLogin}
-              className="modal-button"
-            >cadastrar
-            </Button>
+              type="password"
+              className="modal-input input-ativo"
+              placeholder="Confirmação de senha"
+              value={confirmaUserPassword}
+              onFocus={changeLogo}
+              onBlur={changeLogo}
+              onChange={(e) => setConfirmaUserPassword(e.target.value)}
+            />
+            <Link to="/dashboard">
+              <Button
+                type="submit"
+                onClick={handleLogin}
+                className="botao-primario"
+              >
+                cadastrar
+              </Button>
+            </Link>
           </div>
         </div>
       )}
