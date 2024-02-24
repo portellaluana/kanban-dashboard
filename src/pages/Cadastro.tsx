@@ -2,6 +2,7 @@ import { Login } from "./Login";
 import { AppContext } from "../context/AppContext";
 import { useContext,  } from "react";
 import Button from "../components/buttons/Button";
+import Input from "../components/inputs/input";
 
 export const Cadastro = () => {
   const {
@@ -44,14 +45,14 @@ export const Cadastro = () => {
           <div className="modal-content">
             <h2>Criar conta</h2>
             {logo ? <a className="logo" /> : <a className="logo-off" />}
-            <input
+            <Input
               type="text"
               placeholder="Nome"
               className="modal-input"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
             />
-            <input
+            <Input
               type="email"
               placeholder="Email"
               className="modal-input"
@@ -59,25 +60,23 @@ export const Cadastro = () => {
               onChange={(e) => setUserEmail(e.target.value)}
             />
 
-            <input
-              type="password"
-              className="modal-input input-ativo"
-              placeholder="Senha"
-              value={userPassword}
-              onChange={(e) => setUserPassword(e.target.value)}
-              onFocus={changeLogo}
-              onBlur={changeLogo}
-            />
+            <Input
+                type="password"
+                className="modal-input input-ativo"
+                placeholder="Senha"
+                value={userPassword}
+                onChange={(e) => setUserPassword(e.target.value)}
+                onFocus={changeLogo}
+                onBlur={changeLogo} />
 
-            <input
-              type="password"
-              className="modal-input input-ativo"
-              placeholder="Confirmação de senha"
-              value={confirmaUserPassword}
-              onFocus={changeLogo}
-              onBlur={changeLogo}
-              onChange={(e) => setConfirmaUserPassword(e.target.value)}
-            />
+            <Input
+                type="password"
+                className="modal-input input-ativo"
+                placeholder="Confirmação de senha"
+                value={confirmaUserPassword}
+                onFocus={changeLogo}
+                onBlur={changeLogo}
+                onChange={(e) => setConfirmaUserPassword(e.target.value)}/>
             <Button
               type="submit"
               onClick={handleLogin}

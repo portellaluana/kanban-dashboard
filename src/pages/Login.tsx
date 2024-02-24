@@ -2,6 +2,7 @@ import Dashboard from "./Dashboard";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 import Button from "../components/buttons/Button";
+import Input from "../components/inputs/input";
 
 export const Login = () => {
   const {
@@ -49,23 +50,20 @@ export const Login = () => {
             ) : (
               <a className="logo-icon-off" />
             )}
-            <input
-              type="text"
-              placeholder="Email"
-              className="modal-input"
-              value={userEmail}
-              onChange={(e) => setUserEmail(e.target.value)}
-            />
-
-            <input
-              type="password"
-              className="modal-input"
-              placeholder="Senha"
-              value={userPassword}
-              onChange={(e) => setUserPassword(e.target.value)}
-              onFocus={changeLogo}
-              onBlur={changeLogo}
-            />
+            <Input
+                type="text"
+                placeholder="Email"
+                className="modal-input"
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}/>
+            <Input
+                type="password"
+                className="modal-input"
+                placeholder="Senha"
+                value={userPassword}
+                onChange={(e) => setUserPassword(e.target.value)}
+                onFocus={changeLogo}
+                onBlur={changeLogo}/>
 
             <Button
               type="submit"

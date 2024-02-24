@@ -1,4 +1,4 @@
-import './index.css'
+import './button.css'
 
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 

@@ -4,6 +4,7 @@ import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
 import { AppContext } from "../context/AppContext";
 import { useContext,  } from "react";
 import Button from "../components/buttons/Button";
+import Input from "../components/inputs/input";
 
 interface TarefasProps {
   id: string;
@@ -170,13 +171,12 @@ function Dashboard() {
               handleAddTask(nomeTarefa, descricaoTarefa, statusTarefa);
             }}
           >
-            <input
+            <Input
               type="text"
               placeholder="Título da tarefa"
               className="input"
               value={nomeTarefa}
-              onChange={(event) => setNomeTarefa(event.target.value)}
-            />
+              onChange={(event) => setNomeTarefa(event.target.value)}/>
             <textarea
               placeholder="Descrição da tarefa"
               className="input"
