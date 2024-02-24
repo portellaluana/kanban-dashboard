@@ -1,24 +1,32 @@
-import { useState } from "react";
 import Dashboard from "./Dashboard";
+import { AppContext } from "../context/AppContext";
+import { useContext } from "react";
+import Button from "../components/buttons/Button";
 
-export const LoginModal = () => {
-  const [userEmailLogin, setUserEmailLogin] = useState("");
-  const [passwordLogin, setPasswordLogin] = useState("");
-  const [user, setUser] = useState([]);
-  const [logo, setLogoOff] = useState(true);
+export const Login = () => {
+  const {
+    user,
+    setUser,
+    logo,
+    setLogoOff,
+    userEmail,
+    setUserEmail,
+    userPassword,
+    setUserPassword,
+  } = useContext(AppContext);
 
   const handleLogin = () => {
     const cadastro = localStorage.getItem("cadastro");
 
     if (
-      !cadastro?.includes(userEmailLogin) ||
-      !cadastro?.includes(passwordLogin) ||
-      userEmailLogin === "" ||
-      passwordLogin === ""
+      !cadastro?.includes(userEmail) ||
+      !cadastro?.includes(userPassword) ||
+      userEmail === "" ||
+      userPassword === ""
     ) {
       return;
     } else {
-      const newUser = { userEmailLogin, passwordLogin };
+      const newUser = { userEmail, userPassword };
       localStorage.setItem("usuario", JSON.stringify([...user, newUser]));
     }
     window.location.reload();
@@ -45,26 +53,27 @@ export const LoginModal = () => {
               type="text"
               placeholder="Email"
               className="modal-input"
-              value={userEmailLogin}
-              onChange={(e) => setUserEmailLogin(e.target.value)}
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
             />
 
             <input
               type="password"
               className="modal-input"
               placeholder="Senha"
-              value={passwordLogin}
-              onChange={(e) => setPasswordLogin(e.target.value)}
+              value={userPassword}
+              onChange={(e) => setUserPassword(e.target.value)}
               onFocus={changeLogo}
               onBlur={changeLogo}
             />
-            <button
+
+            <Button
               type="submit"
               onClick={handleLogin}
               className="modal-button"
             >
-              Login
-            </button>
+              fazer login
+            </Button>
           </div>
         </div>
       )}

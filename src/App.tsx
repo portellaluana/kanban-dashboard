@@ -1,9 +1,22 @@
-import { Cadastro } from "./components/Cadastro";
+import { Cadastro } from "./pages/Cadastro";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Provider } from "./context/Provider";
+import { Login } from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
     <>
-      <Cadastro />
+    <BrowserRouter>
+      <Provider>
+        <Routes>
+          <Route path="/" element={<Cadastro />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Provider>
+    </BrowserRouter>
     </>
   );
 }

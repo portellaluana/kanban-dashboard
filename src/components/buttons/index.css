@@ -1,0 +1,61 @@
+.modal-button {
+  margin: 8px 0;
+  min-height: 48px;
+  background-color: black;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 300;
+  cursor: pointer;
+}
+.modal-button:hover {
+  background-color: rgb(26, 26, 26);
+}
+.button-editar,
+.button-excluir {
+  width: 100% !important;
+  text-align: center !important;
+}
+.tarefa-title button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(175, 175, 175);
+  font-weight: 800;
+  border-radius: 100px;
+  border: none;
+  width: 12px;
+  height: 20px;
+  text-align: end;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 0;
+}
+.button-add {
+  background-color: black;
+  color: white;
+  padding: 8px 16px;
+  font-weight: 800;
+  border-radius: 4px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 8px 0 24px 0;
+  min-height: 48px;
+  cursor: pointer;
+}
+.button-plus {
+  background-color: black;
+  color: white;
+  font-weight: 800;
+  border-radius: 100px;
+  border: none;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+}

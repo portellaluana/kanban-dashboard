@@ -1,13 +1,22 @@
-import { useState } from "react";
-import { LoginModal } from "./Login";
+import { Login } from "./Login";
+import { AppContext } from "../context/AppContext";
+import { useContext,  } from "react";
+import Button from "../components/buttons/Button";
 
 export const Cadastro = () => {
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [confirmaUserPassword, setConfirmaUserPassword] = useState("");
-  const [user, setUser] = useState([]);
-  const [logo, setLogoOff] = useState(true);
+  const {
+    userName,
+    setUserName,
+    userEmail,
+    setUserEmail,
+    userPassword,
+    setUserPassword,
+    confirmaUserPassword,
+    setConfirmaUserPassword,
+    user,
+    setUser,
+    logo, setLogoOff
+  } = useContext(AppContext);
 
   const handleLogin = () => {
     if (userName === "" || userPassword === "" || userEmail === "") {
@@ -29,7 +38,7 @@ export const Cadastro = () => {
   return (
     <>
       {localStorage.getItem("cadastro") ? (
-        <LoginModal />
+        <Login />
       ) : (
         <div className="modal-container">
           <div className="modal-content">
@@ -69,13 +78,12 @@ export const Cadastro = () => {
               onBlur={changeLogo}
               onChange={(e) => setConfirmaUserPassword(e.target.value)}
             />
-            <button
+            <Button
               type="submit"
               onClick={handleLogin}
               className="modal-button"
-            >
-              Login
-            </button>
+            >cadastrar
+            </Button>
           </div>
         </div>
       )}

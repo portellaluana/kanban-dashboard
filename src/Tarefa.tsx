@@ -1,5 +1,6 @@
 import { Draggable } from "@hello-pangea/dnd";
 import { useState } from "react";
+import Button from "./components/buttons/Button";
 
 interface TarefaProps {
   task: {
@@ -33,15 +34,15 @@ export function Tarefa({ task, index }: TarefaProps) {
               {open ? (
                 <div className="modal-sets">
                   <div className="background-modal-sets">
-                    <button onClick={openModalSets}>x</button>
-                    <button className="button-editar">editar tarefa</button>
-                    <button className="button-excluir">excluir tarefa</button>
+                    <Button onClick={openModalSets}>x</Button>
+                    <Button className="button-editar">editar tarefa</Button>
+                    <Button className="button-excluir">excluir tarefa</Button>
                   </div>
                 </div>
               ) : (
-                <button onClick={openModalSets} className="button-sets">
+                <Button onClick={openModalSets} className="button-sets">
                   <a className="menu-icon" />
-                </button>
+                </Button>
               )}
             </p>
             <p className="tarefa-description">{task.description}</p>

@@ -1,6 +1,9 @@
 import { Tarefa } from "../Tarefa";
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
+import { AppContext } from "../context/AppContext";
+import { useContext,  } from "react";
+import Button from "../components/buttons/Button";
 
 interface TarefasProps {
   id: string;
@@ -22,10 +25,12 @@ function Dashboard() {
     { id: "tarefas-prontas", title: "Prontos", tasks: [] },
   ]);
 
-  const [nomeTarefa, setNomeTarefa] = useState<string>("");
-  const [descricaoTarefa, setDescricaoTarefa] = useState<string>("");
-  const [statusTarefa, setStatusTarefa] = useState<string>("a-fazer");
-  const [open, setOpen] = useState<boolean>(false);
+  const {
+    nomeTarefa, setNomeTarefa,
+    descricaoTarefa, setDescricaoTarefa,
+    statusTarefa, setStatusTarefa,
+    open, setOpen
+  } = useContext(AppContext);
 
   function handleAddTask(
     nomeTarefa: string,
@@ -41,7 +46,7 @@ function Dashboard() {
       );
 
       if (colunaFeito) {
-        const newTask = {
+        const novaTarefa = {
           id: `${colunaFeito.tasks} ${Math.floor(Math.random() * 100)}`,
           name: nomeTarefa,
           description: descricaoTarefa,
@@ -50,7 +55,7 @@ function Dashboard() {
 
         const atualizaColunas = colunas.map((coluna) =>
           coluna.id === colunaFeito.id
-            ? { ...colunaFeito, tasks: [...colunaFeito.tasks, newTask] }
+            ? { ...colunaFeito, tasks: [...colunaFeito.tasks, novaTarefa] }
             : coluna
         );
 
@@ -70,14 +75,14 @@ function Dashboard() {
 
     const colunaAlvo = { ...colunas[colunaAlvoIndex] };
 
-    const newTask = {
+    const novaTarefa = {
       id: `${colunaAlvo.tasks} ${Math.floor(Math.random() * 100)}`,
       name: nomeTarefa,
       description: descricaoTarefa,
       status: statusTarefa,
     };
 
-    colunaAlvo.tasks = [...colunaAlvo.tasks, newTask];
+    colunaAlvo.tasks = [...colunaAlvo.tasks, novaTarefa];
 
     const atualizaColunas = [...colunas];
     atualizaColunas[colunaAlvoIndex] = colunaAlvo;
@@ -116,7 +121,7 @@ function Dashboard() {
     atualizaLocalStorage(atualizaColunas);
   }
 
-  localStorage.removeItem;
+  // localStorage.removeItem;
 
   function atualizaLocalStorage(colunas: ColunaProps[]) {
     colunas.forEach((coluna) => {
@@ -189,19 +194,19 @@ function Dashboard() {
               <option value="fazendo">Fazendo</option>
               <option value="feito">Feito</option>
             </select>
-            <button type="submit" className="button-add">
+            <Button type="submit" className="button-add">
               criar tarefa
-            </button>
+            </Button>
           </form>
         ) : (
           <div className="form-container">
-            <button
+            <Button
               type="submit"
               className="button-plus"
               onClick={openModalTarefa}
             >
               +
-            </button>
+            </Button>
           </div>
         )}
 
