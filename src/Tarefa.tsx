@@ -14,11 +14,11 @@ interface TarefaProps {
 }
 
 export function Tarefa({ task, index }: TarefaProps) {
-  const [open, setOpen] = useState<boolean>(false);
+  // const [open, setOpen] = useState<boolean>(false);
 
-  function openModalSets() {
-    setOpen(!open);
-  }
+  // function openModalSets() {
+  //   setOpen(!open);
+  // }
 
   return (
     <Draggable draggableId={task.id} index={index}>
@@ -32,7 +32,7 @@ export function Tarefa({ task, index }: TarefaProps) {
           <div className="tarefa-container">
             <p className="tarefa-title">
               {task.name}
-              {open ? (
+              {/* {open ? (
                 <div className="modal-sets">
                   <div className="background-modal-sets">
                     <Button onClick={openModalSets}>x</Button>
@@ -40,11 +40,11 @@ export function Tarefa({ task, index }: TarefaProps) {
                     <Button className="button-excluir">excluir tarefa</Button>
                   </div>
                 </div>
-              ) : (
-                <Button onClick={openModalSets} className="button-sets">
+              ) : ( */}
+                <Button  className="button-sets">
                   <a className="menu-icon" />
                 </Button>
-              )}
+              {/* )} */}
             </p>
             <p className="tarefa-description">{task.description}</p>
           </div>

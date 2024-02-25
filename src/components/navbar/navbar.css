@@ -1,0 +1,150 @@
+body{
+    margin: 0 auto !important;
+}
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 100px;
+  margin-top: 16px;
+}
+.navbar-content {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+h1 {
+  font-size: 5.5rem;
+  text-align: center;
+  margin-bottom: 24px;
+}
+a {
+  display: flex;
+  align-items: center;
+}
+.logo-navbar {
+  background-image: url(../../assets/logo.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  max-width: 160px;
+  height: 53px !important;
+  margin: 0 !important;
+}
+ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+li {
+  margin: 0 16px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+li:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao-cta {
+  margin-left: 16px;
+  width: 200px;
+  margin: 8px 0;
+  min-height: 48px;
+  background-color: black;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 300;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.botao-cta:hover {
+  background-color: rgb(26, 26, 26);
+}
+.botao-secundario {
+  margin: 8px 0;
+  min-height: 48px;
+  background-color: white;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.home-container {
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 112px);
+}
+.bg-home {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+h5 {
+  font-weight: 300;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 0;
+  width: 100%;
+}
+.menu-mobile {
+  display: none;
+}
+.navbar-content-mobile{display: none;}
+@media screen and (max-width: 1040px) {
+    body{
+        margin: 0 24px !important;
+    }
+  .menu {
+    background-image: url(../../assets/menu.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 24px;
+    height: 24px;
+  }
+  h5 {
+    font-size: 1.2rem;
+  }
+
+}
+@media screen and (max-width: 1000px) {
+h1{
+font-size: 5rem;
+}
+.navbar-content {
+  display: none;
+}
+.menu-mobile {
+  display: flex;
+}
+.navbar-content-mobile{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ul {
+  display: none;
+}
+.botao-nav {
+  display: none;
+}
+}
+@media screen and (max-width: 640px) {
+  h1{
+  font-size: 5rem;
+  }
+   }
+@media screen and (max-width: 500px) {
+
+h1{
+    font-size: 3.2rem;
+}
+}

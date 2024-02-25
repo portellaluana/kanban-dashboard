@@ -4,11 +4,6 @@ input{
   box-sizing: border-box;
 }
 
-
-/* .modal-content {
-  display: inline-flex;
-  flex-direction: column;
-} */
 .modal-input {
   margin: 8px 0;
   min-width: 300px;

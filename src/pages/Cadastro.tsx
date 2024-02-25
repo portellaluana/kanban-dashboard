@@ -1,12 +1,14 @@
 import { AppContext } from "../context/AppContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Button from "../components/buttons/Button";
 import Input from "../components/inputs/input";
-import { Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
+import { Link } from "react-router-dom";
 
 export const Cadastro = () => {
   const context = useContext(AppContext);
+  const [emailValido, setEmailValido] = useState(true);
+  const [senhaConfere, setSenhaConfere] = useState(true);
 
   if (!context) {
     return null;
@@ -24,25 +26,20 @@ export const Cadastro = () => {
     user,
     logo,
     setLogoOff,
-    logado,
-    setLogado,
   } = context;
 
   const handleLogin = () => {
     if (userName === "" || userPassword === "" || userEmail === "") {
       return;
     } else if (userPassword !== confirmaUserPassword) {
+      setSenhaConfere(!senhaConfere);
       return;
     } else if (!userEmail.includes("@")) {
+      setEmailValido(!emailValido);
       return;
     } else {
       const novoCadastro = { userName, userEmail, userPassword };
-      localStorage.setItem(
-        "cadastro",
-        JSON.stringify([...user, novoCadastro])
-      );
-      setLogado(!logado);
-      localStorage.setItem("logado", JSON.stringify(!logado));
+      localStorage.setItem("cadastro", JSON.stringify([...user, novoCadastro]));
     }
   };
 
@@ -57,7 +54,6 @@ export const Cadastro = () => {
       ) : (
         <div className="modal-container">
           <div className="modal-content">
-            <h2>Criar conta</h2>
             {logo ? <a className="logo" /> : <a className="logo-off" />}
             <Input
               type="text"
@@ -73,7 +69,11 @@ export const Cadastro = () => {
               value={userEmail}
               onChange={(e) => setUserEmail(e.target.value)}
             />
-
+            {!emailValido ? (
+              <p className="input-error">Insira um endereço de e-mail válido</p>
+            ) : (
+              ""
+            )}
             <Input
               type="password"
               className="modal-input input-ativo"
@@ -93,7 +93,12 @@ export const Cadastro = () => {
               onBlur={changeLogo}
               onChange={(e) => setConfirmaUserPassword(e.target.value)}
             />
-            <Link to="/kanban-dashboard/dashboard">
+            {!senhaConfere ? (
+              <p className="input-error">Senhas não conferem</p>
+            ) : (
+              ""
+            )}
+            <Link to="/kanban-dashboard/login">
               <Button
                 type="submit"
                 onClick={handleLogin}

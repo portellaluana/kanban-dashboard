@@ -4,20 +4,21 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "./context/Provider";
 import { Login } from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import { Home } from "./pages/Home";
 
 function App() {
   return (
     <>
-    <BrowserRouter>
-      <Provider>
-        <Routes>
-        <Route path="/kanban-dashboard" element={<Login />} />
-          <Route path="/kanban-dashboard/login" element={<Login />} />
-          <Route path="/kanban-dashboard/cadastro" element={<Cadastro />} />
-          <Route path="/kanban-dashboard/dashboard" element={<Dashboard />} />
-        </Routes>
-      </Provider>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Provider>
+          <Routes>
+            <Route path="/kanban-dashboard" element={<Home />} />
+            <Route path="/kanban-dashboard/login" element={<Login />} />
+            <Route path="/kanban-dashboard/cadastro" element={<Cadastro />} />
+            <Route path="/kanban-dashboard/dashboard" element={<Dashboard />} />
+          </Routes>
+        </Provider>
+      </BrowserRouter>
     </>
   );
 }

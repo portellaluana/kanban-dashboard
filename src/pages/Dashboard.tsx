@@ -5,6 +5,8 @@ import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 import Button from "../components/buttons/Button";
 import Input from "../components/inputs/input";
+import { Login } from "./Login";
+import { Header } from "../components/header/Header";
 import { Link } from "react-router-dom";
 
 interface TarefasProps {
@@ -42,8 +44,6 @@ function Dashboard() {
     setStatusTarefa,
     open,
     setOpen,
-    logado,
-    setLogado,
   } = context;
 
   function handleAddTask(
@@ -80,7 +80,6 @@ function Dashboard() {
         setStatusTarefa("a-fazer");
         return;
       }
-      // window.location.reload();
     }
 
     const colunaAlvoIndex = colunas.findIndex(
@@ -106,7 +105,6 @@ function Dashboard() {
     setNomeTarefa("");
     setDescricaoTarefa("");
     setStatusTarefa("a-fazer");
-    // window.location.reload();
   }
 
   function onDragEnd(result: DropResult) {
@@ -116,9 +114,9 @@ function Dashboard() {
 
     const indexColunaAnterior = parseInt(result.source.droppableId, 10);
     const indexColunaDestino =
-  result.destination && result.destination.droppableId
-    ? parseInt(result.destination.droppableId, 10)
-    : -1;
+      result.destination && result.destination.droppableId
+        ? parseInt(result.destination.droppableId, 10)
+        : -1;
 
     const indexAnterior = result.source.index;
     const indexDestino = result.destination.index;
@@ -138,115 +136,121 @@ function Dashboard() {
     atualizaLocalStorage(atualizaColunas);
   }
 
-  // localStorage.removeItem;
-
   function atualizaLocalStorage(colunas: ColunaProps[]) {
     colunas.forEach((coluna) => {
       localStorage.setItem(coluna.id, JSON.stringify(coluna.tasks));
-      console.log(colunas);
     });
   }
 
   function openModalTarefa() {
     setOpen(!open);
-    console.log(open);
   }
 
-  function deslogar() {
-    setLogado(logado);
-    localStorage.setItem("logado", JSON.stringify(logado));
-    localStorage.removeItem('usuario')
+  function excluirUsuario() {
+    localStorage.removeItem("logado");
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("cadastro");
   }
 
   useEffect(() => {
     const storedcolunas = colunas.map((coluna) => ({
       ...coluna,
-      tasks: JSON.parse(localStorage.getItem(coluna.id) || '[]') || [],
+      tasks: JSON.parse(localStorage.getItem(coluna.id) || "[]") || [],
     }));
-  
+
     setColunas(storedcolunas);
   }, []);
 
   return (
     <>
-      <div className="dashboard">
-        {open ? (
-          <form
-            onSubmit={() => {
-              handleAddTask(nomeTarefa, descricaoTarefa, statusTarefa);
-            }}
-          >
-            <Input
-              type="text"
-              placeholder="Título da tarefa"
-              className="input"
-              value={nomeTarefa}
-              onChange={(event) => setNomeTarefa(event.target.value)}
-            />
-            <textarea
-              placeholder="Descrição da tarefa"
-              className="input"
-              value={descricaoTarefa}
-              onChange={(event) => setDescricaoTarefa(event.target.value)}
-            ></textarea>
+      {localStorage.getItem("usuario") ? (
+        <div className="dashboard">
+          <Header />
 
-            <select
-              name="status"
-              id="status"
-              value={statusTarefa}
-              onChange={(event) => setStatusTarefa(event.target.value)}
+          {open ? (
+            <form
+              onSubmit={() => {
+                handleAddTask(nomeTarefa, descricaoTarefa, statusTarefa);
+              }}
             >
-              <option value="a-fazer">A fazer</option>
-              <option value="fazendo">Fazendo</option>
-              <option value="feito">Feito</option>
-            </select>
-            <Button type="submit" className="button-add">
-              criar tarefa
-            </Button>
-          </form>
-        ) : (
-          <div className="form-container">
-            <Button
-              type="submit"
-              className="button-plus"
-              onClick={openModalTarefa}
-            >
-              +
-            </Button>
-          </div>
-        )}
-        <Link to="/kanban-dashboard/login">
-          <Button type="submit" className="botao-secundario" onClick={deslogar}>
-            deslogar
-          </Button>
-        </Link>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <div className="colunas">
-            {colunas.map((coluna, indexColuna) => (
-              <Droppable
-                key={coluna.id}
-                droppableId={indexColuna.toString()}
-                type="list"
-                direction="vertical"
+              <Input
+                type="text"
+                placeholder="Título da tarefa"
+                className="input"
+                value={nomeTarefa}
+                onChange={(event) => setNomeTarefa(event.target.value)}
+              />
+              <textarea
+                placeholder="Descrição da tarefa"
+                className="input"
+                value={descricaoTarefa}
+                onChange={(event) => setDescricaoTarefa(event.target.value)}
+              ></textarea>
+
+              <select
+                name="status"
+                id="status"
+                value={statusTarefa}
+                onChange={(event) => setStatusTarefa(event.target.value)}
               >
-                {(provided) => (
-                  <div
-                    className="coluna"
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
-                    <h4 className="coluna-title">{coluna.title}</h4>
-                    {coluna.tasks.map((task, indexTarefa) => (
-  <Tarefa key={task.id} task={task} index={indexTarefa} />
-))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            ))}
-          </div>
-        </DragDropContext>
-      </div>
+                <option value="a-fazer">A fazer</option>
+                <option value="fazendo">Fazendo</option>
+                <option value="feito">Feito</option>
+              </select>
+              <Button type="submit" className="button-add">
+                criar tarefa
+              </Button>
+            </form>
+          ) : (
+            <div className="form-container">
+              <Button
+                type="submit"
+                className="button-plus"
+                onClick={openModalTarefa}
+              >
+                +
+              </Button>
+            </div>
+          )}
+          <DragDropContext onDragEnd={onDragEnd}>
+            <div className="colunas">
+              {colunas.map((coluna, indexColuna) => (
+                <Droppable
+                  key={coluna.id}
+                  droppableId={indexColuna.toString()}
+                  type="list"
+                  direction="vertical"
+                >
+                  {(provided) => (
+                    <div
+                      className="coluna"
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                    >
+                      <h4 className="coluna-title">{coluna.title}</h4>
+                      {coluna.tasks.map((task, indexTarefa) => (
+                        <Tarefa key={task.id} task={task} index={indexTarefa} />
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              ))}
+            </div>
+          </DragDropContext>
+        </div>
+      ) : (
+        <Login />
+      )}
+      <Link to="/kanban-dashboard/cadastro">
+        <Button
+          type="submit"
+          className="botao-secundario text-right"
+          onClick={excluirUsuario}
+        >
+          excluir conta
+        </Button>
+      </Link>
     </>
   );
 }

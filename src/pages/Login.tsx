@@ -4,6 +4,7 @@ import { useContext } from "react";
 import Button from "../components/buttons/Button";
 import Input from "../components/inputs/input";
 import { Link } from "react-router-dom";
+import { Cadastro } from "./Cadastro";
 
 export const Login = () => {
   const context = useContext(AppContext);
@@ -26,7 +27,6 @@ export const Login = () => {
 
   const handleLogin = () => {
     const cadastro = localStorage.getItem("cadastro");
-
     if (
       !cadastro?.includes(userEmail) ||
       !cadastro?.includes(userPassword) ||
@@ -48,12 +48,9 @@ export const Login = () => {
 
   return (
     <>
-      {localStorage.getItem("usuario") ? (
-        <Dashboard />
-      ) : (
+      {localStorage.getItem("cadastro") ? (
         <div className="modal-container">
           <div className="modal-content">
-            <h2>Login</h2>
             {logo ? (
               <a className="logo-icon" />
             ) : (
@@ -76,21 +73,18 @@ export const Login = () => {
               onBlur={changeLogo}
             />
             <Link to="/kanban-dashboard/dashboard">
-              <Button
-                type="submit"
-                onClick={handleLogin}
-                className="botao-primario"
-              >
-                fazer login
-              </Button>
-            </Link>
-            <Link to="/kanban-dashboard/cadastro">
-              <p className="text-center">
-                Ainda não tem cadastro?<span className="botao-secundario">Cadastre-se</span>
-              </p>
+            <Button
+              type="submit"
+              onClick={handleLogin}
+              className="botao-primario"
+            >
+              fazer login
+            </Button>
             </Link>
           </div>
         </div>
+      ) : (
+        <Cadastro />
       )}
     </>
   );

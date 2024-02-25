@@ -1,0 +1,32 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin-top: 16px;
+  width: 100%;
+}
+.user-name{
+    width: 100px;
+    height: 26px;
+}
+.user-name span{
+font-weight: bold;
+margin-left: 4px;
+}
+li:hover {
+  font-weight: normal !important;
+}
+.header-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icon-sair {
+  background-image: url(../../assets/sair.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
