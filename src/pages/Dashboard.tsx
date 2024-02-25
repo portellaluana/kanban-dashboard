@@ -27,6 +27,12 @@ function Dashboard() {
     { id: "tarefas-prontas", title: "Prontos", tasks: [] },
   ]);
 
+  const context = useContext(AppContext);
+
+  if (!context) {
+    return null;
+  }
+
   const {
     nomeTarefa,
     setNomeTarefa,
@@ -38,7 +44,7 @@ function Dashboard() {
     setOpen,
     logado,
     setLogado,
-  } = useContext(AppContext);
+  } = context;
 
   function handleAddTask(
     nomeTarefa: string,
@@ -108,8 +114,11 @@ function Dashboard() {
       return;
     }
 
-    const indexColunaAnterior = result.source.droppableId;
-    const indexColunaDestino = result.destination.droppableId;
+    const indexColunaAnterior = parseInt(result.source.droppableId, 10);
+    const indexColunaDestino =
+  result.destination && result.destination.droppableId
+    ? parseInt(result.destination.droppableId, 10)
+    : -1;
 
     const indexAnterior = result.source.index;
     const indexDestino = result.destination.index;
@@ -143,23 +152,6 @@ function Dashboard() {
     console.log(open);
   }
 
-  function handleDeleteTask(colunaId: string, taskId: string) {
-    const atualizaColunas = [...colunas];
-    const colunaAlvo = atualizaColunas.find((coluna) => coluna.id === colunaId);
-
-    if (colunaAlvo) {
-      const indexTarefaNaColuna = colunaAlvo.tasks.findIndex(
-        (task) => task.id === taskId
-      );
-
-      if (indexTarefaNaColuna !== -1) {
-        colunaAlvo.tasks.splice(indexTarefaNaColuna, 1);
-        setColunas(atualizaColunas);
-        atualizaLocalStorage(atualizaColunas);
-      }
-    }
-  }
-
   function deslogar() {
     setLogado(logado);
     localStorage.setItem("logado", JSON.stringify(logado));
@@ -168,8 +160,9 @@ function Dashboard() {
   useEffect(() => {
     const storedcolunas = colunas.map((coluna) => ({
       ...coluna,
-      tasks: JSON.parse(localStorage.getItem(coluna.id)) || [],
+      tasks: JSON.parse(localStorage.getItem(coluna.id) || '[]') || [],
     }));
+  
     setColunas(storedcolunas);
   }, []);
 
@@ -247,9 +240,6 @@ function Dashboard() {
                       <Tarefa
                         key={task.id}
                         task={task}
-                        onDelete={(colunaId, taskId) =>
-                          handleDeleteTask(colunaId, taskId)
-                        }
                       />
                     ))}
                     {provided.placeholder}

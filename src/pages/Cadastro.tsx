@@ -1,4 +1,3 @@
-import { Login } from "./Login";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 import Button from "../components/buttons/Button";
@@ -7,6 +6,12 @@ import { Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
 
 export const Cadastro = () => {
+  const context = useContext(AppContext);
+
+  if (!context) {
+    return null;
+  }
+
   const {
     userName,
     setUserName,
@@ -17,31 +22,36 @@ export const Cadastro = () => {
     confirmaUserPassword,
     setConfirmaUserPassword,
     user,
-    setUser,
     logo,
     setLogoOff,
-    logado, setLogado
-  } = useContext(AppContext);
+    logado,
+    setLogado,
+  } = context;
 
   const handleLogin = () => {
     if (userName === "" || userPassword === "" || userEmail === "") {
       return;
-    } else if (userPassword != confirmaUserPassword) {
+    } else if (userPassword !== confirmaUserPassword) {
       return;
     } else if (!userEmail.includes("@")) {
       return;
     } else {
       const novoCadastro = { userName, userEmail, userPassword };
-      localStorage.setItem("cadastro", JSON.stringify([...user, novoCadastro]));
-      setLogado(!logado)
+      localStorage.setItem(
+        "cadastro",
+        JSON.stringify([...user, novoCadastro])
+      );
+      setLogado(!logado);
       localStorage.setItem("logado", JSON.stringify(!logado));
     }
 
     window.location.reload();
   };
+
   function changeLogo() {
     setLogoOff(!logo);
   }
+
   return (
     <>
       {localStorage.getItem("cadastro") ? (

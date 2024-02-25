@@ -1,3 +1,4 @@
+// Tarefa.tsx
 import { Draggable } from "@hello-pangea/dnd";
 import { useState } from "react";
 import Button from "./components/buttons/Button";
@@ -7,7 +8,7 @@ interface TarefaProps {
     id: string;
     name: string;
     description: string;
-    column: string;
+    column?: string; 
   };
   index: number;
 }

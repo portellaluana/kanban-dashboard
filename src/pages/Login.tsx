@@ -6,9 +6,15 @@ import Input from "../components/inputs/input";
 import { Link } from "react-router-dom";
 
 export const Login = () => {
+
+  const context = useContext(AppContext);
+
+  if (!context) {
+    return null;
+  }
+
   const {
     user,
-    setUser,
     logo,
     setLogoOff,
     userEmail,
@@ -16,7 +22,7 @@ export const Login = () => {
     userPassword,
     setUserPassword,
     logado, setLogado
-  } = useContext(AppContext);
+  } = context;
 
   const handleLogin = () => {
     const cadastro = localStorage.getItem("cadastro");
