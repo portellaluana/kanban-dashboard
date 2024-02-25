@@ -236,12 +236,9 @@ function Dashboard() {
                     {...provided.droppableProps}
                   >
                     <h4 className="coluna-title">{coluna.title}</h4>
-                    {coluna.tasks.map((task) => (
-                      <Tarefa
-                        key={task.id}
-                        task={task}
-                      />
-                    ))}
+                    {coluna.tasks.map((task, indexTarefa) => (
+  <Tarefa key={task.id} task={task} index={indexTarefa} />
+))}
                     {provided.placeholder}
                   </div>
                 )}
