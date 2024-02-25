@@ -45,7 +45,7 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
   const [confirmaUserPassword, setConfirmaUserPassword] = useState<string>("");
-  const [user, setUser] = useState<string>(""); // Ajuste conforme o tipo real de user
+  const [user, setUser] = useState<string>(""); 
   const [logo, setLogoOff] = useState<boolean>(true);
   const [nomeTarefa, setNomeTarefa] = useState<string>("");
   const [descricaoTarefa, setDescricaoTarefa] = useState<string>("");

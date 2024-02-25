@@ -12,10 +12,8 @@ export const Header = () => {
   }
 
   const { logado, setLogado } = context;
-  const user = localStorage.getItem("cadastro");
-  const nomeUsuario = JSON.parse(user)
-
-  
+  const user = localStorage.getItem("cadastro") ?? "";
+  const nomeUsuario = JSON.parse(user as string);
 
   function deslogar() {
     setLogado(!logado);
@@ -28,7 +26,9 @@ export const Header = () => {
       <a className="logo-navbar" />
       <div className="header-content">
         <ul>
-          <li className="user-name">Olá, <span> {nomeUsuario[0].userName}</span></li>
+          <li className="user-name">
+            Olá, <span> {nomeUsuario[0].userName}</span>
+          </li>
         </ul>
         <a className="icon-sair" />
         <Link to="/kanban-dashboard/login">

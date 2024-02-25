@@ -1,4 +1,3 @@
-import Dashboard from "./Dashboard";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 import Button from "../components/buttons/Button";
