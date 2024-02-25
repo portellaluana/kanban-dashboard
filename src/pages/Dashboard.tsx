@@ -80,7 +80,7 @@ function Dashboard() {
         setStatusTarefa("a-fazer");
         return;
       }
-      window.location.reload();
+      // window.location.reload();
     }
 
     const colunaAlvoIndex = colunas.findIndex(
@@ -106,7 +106,7 @@ function Dashboard() {
     setNomeTarefa("");
     setDescricaoTarefa("");
     setStatusTarefa("a-fazer");
-    window.location.reload();
+    // window.location.reload();
   }
 
   function onDragEnd(result: DropResult) {
@@ -155,6 +155,7 @@ function Dashboard() {
   function deslogar() {
     setLogado(logado);
     localStorage.setItem("logado", JSON.stringify(logado));
+    localStorage.removeItem('usuario')
   }
 
   useEffect(() => {
@@ -171,8 +172,7 @@ function Dashboard() {
       <div className="dashboard">
         {open ? (
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
+            onSubmit={() => {
               handleAddTask(nomeTarefa, descricaoTarefa, statusTarefa);
             }}
           >

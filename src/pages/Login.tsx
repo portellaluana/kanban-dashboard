@@ -6,7 +6,6 @@ import Input from "../components/inputs/input";
 import { Link } from "react-router-dom";
 
 export const Login = () => {
-
   const context = useContext(AppContext);
 
   if (!context) {
@@ -21,7 +20,8 @@ export const Login = () => {
     setUserEmail,
     userPassword,
     setUserPassword,
-    logado, setLogado
+    logado,
+    setLogado,
   } = context;
 
   const handleLogin = () => {
@@ -38,9 +38,8 @@ export const Login = () => {
       const newUser = { userEmail, userPassword };
       localStorage.setItem("usuario", JSON.stringify([...user, newUser]));
     }
-    setLogado(!logado)
+    setLogado(!logado);
     localStorage.setItem("logado", JSON.stringify(!logado));
-    window.location.reload();
   };
 
   function changeLogo() {
@@ -49,7 +48,7 @@ export const Login = () => {
 
   return (
     <>
-      {localStorage.getItem("usuario")? (
+      {localStorage.getItem("usuario") ? (
         <Dashboard />
       ) : (
         <div className="modal-container">
@@ -61,29 +60,34 @@ export const Login = () => {
               <a className="logo-icon-off" />
             )}
             <Input
-                type="text"
-                placeholder="Email"
-                className="modal-input"
-                value={userEmail}
-                onChange={(e) => setUserEmail(e.target.value)}/>
+              type="text"
+              placeholder="Email"
+              className="modal-input"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
             <Input
-                type="password"
-                className="modal-input"
-                placeholder="Senha"
-                value={userPassword}
-                onChange={(e) => setUserPassword(e.target.value)}
-                onFocus={changeLogo}
-                onBlur={changeLogo}/>
-
-            <Button
-              type="submit"
-              onClick={handleLogin}
-              className="botao-primario"
-            >
-              fazer login
-            </Button>
+              type="password"
+              className="modal-input"
+              placeholder="Senha"
+              value={userPassword}
+              onChange={(e) => setUserPassword(e.target.value)}
+              onFocus={changeLogo}
+              onBlur={changeLogo}
+            />
+            <Link to="/kanban-dashboard/dashboard">
+              <Button
+                type="submit"
+                onClick={handleLogin}
+                className="botao-primario"
+              >
+                fazer login
+              </Button>
+            </Link>
             <Link to="/kanban-dashboard/cadastro">
-              <p className="text-center">Não tem cadastro? <span className="botao-secundario">Cadastre-se</span></p>
+              <p className="text-center">
+                Ainda não tem cadastro?<span className="botao-secundario">Cadastre-se</span>
+              </p>
             </Link>
           </div>
         </div>

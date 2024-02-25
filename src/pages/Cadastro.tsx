@@ -44,8 +44,6 @@ export const Cadastro = () => {
       setLogado(!logado);
       localStorage.setItem("logado", JSON.stringify(!logado));
     }
-
-    window.location.reload();
   };
 
   function changeLogo() {
