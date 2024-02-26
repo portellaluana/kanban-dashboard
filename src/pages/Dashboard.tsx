@@ -1,4 +1,4 @@
-import { Tarefa } from "../Tarefa";
+import { Card } from "../components/card/Card";
 import { useState, useEffect } from "react";
 import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
 import { AppContext } from "../context/AppContext";
@@ -9,7 +9,7 @@ import { Login } from "./Login";
 import { Header } from "../components/header/Header";
 import { Link } from "react-router-dom";
 
-interface TarefasProps {
+interface CardsProps {
   id: string;
   name: string;
   description: string;
@@ -19,7 +19,7 @@ interface TarefasProps {
 interface ColunaProps {
   id: string;
   title: string;
-  tasks: TarefasProps[];
+  tasks: CardsProps[];
 }
 
 function Dashboard() {
@@ -152,6 +152,30 @@ function Dashboard() {
     localStorage.removeItem("cadastro");
   }
 
+  function handleCardNameChange(taskId: string, newName: string) {
+    const updatedColunas = colunas.map((coluna) => ({
+      ...coluna,
+      tasks: coluna.tasks.map((task) =>
+        task.id === taskId ? { ...task, name: newName } : task
+      ),
+    }));
+
+    setColunas(updatedColunas);
+    atualizaLocalStorage(updatedColunas);
+  }
+
+  function handleCardDescriptionChange(taskId: string, newDescription: string) {
+    const updatedColunas = colunas.map((coluna) => ({
+      ...coluna,
+      tasks: coluna.tasks.map((task) =>
+        task.id === taskId ? { ...task, description: newDescription } : task
+      ),
+    }));
+
+    setColunas(updatedColunas);
+    atualizaLocalStorage(updatedColunas);
+  }
+
   useEffect(() => {
     const storedcolunas = colunas.map((coluna) => ({
       ...coluna,
@@ -229,7 +253,13 @@ function Dashboard() {
                     >
                       <h4 className="coluna-title">{coluna.title}</h4>
                       {coluna.tasks.map((task, indexTarefa) => (
-                        <Tarefa key={task.id} task={task} index={indexTarefa} />
+                        <Card
+                          key={task.id}
+                          task={task}
+                          index={indexTarefa}
+                          onCardNameChange={handleCardNameChange}
+                          onCardDescriptionChange={handleCardDescriptionChange}
+                        />
                       ))}
                       {provided.placeholder}
                     </div>

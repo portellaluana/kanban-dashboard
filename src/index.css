@@ -63,21 +63,21 @@ h4 {
   min-height: 200px;
   /* margin: 8px; */
 }
-.tarefa {
+.card {
   margin: 8px;
 }
-.tarefa-container {
+.card-container {
   background-color: white;
   padding: 8px 16px;
   border-radius: 4px;
 }
-.tarefa-title {
+.card-title {
   font-weight: 500;
   margin: 0;
   display: flex;
   justify-content: space-between;
 }
-.tarefa-description {
+.card-description {
   font-weight: 300;
   margin: 4px 0 0 0;
 }

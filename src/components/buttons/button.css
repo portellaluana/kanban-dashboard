@@ -32,7 +32,7 @@
   width: 100% !important;
   text-align: center !important;
 }
-.tarefa-title button {
+.card-title button {
   background-color: rgb(255, 255, 255);
   color: rgb(175, 175, 175);
   font-weight: 800;
