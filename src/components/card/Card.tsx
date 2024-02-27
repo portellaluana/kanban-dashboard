@@ -1,6 +1,8 @@
 import { Draggable } from "@hello-pangea/dnd";
 import { useState, useEffect } from "react";
-import Input from "../inputs/input";
+import Input from "../inputs/Input";
+import './card.css'
+
 
 interface CardProps {
   task: {
@@ -10,8 +12,8 @@ interface CardProps {
     column?: string;
   };
   index: number;
-  onCardNameChange: (taskId: string, newName: string) => void;
-  onCardDescriptionChange: (taskId: string, newDescription: string) => void;
+  onCardNameChange: (cardId: string, newName: string) => void;
+  onCardDescriptionChange: (cardId: string, newDescription: string) => void;
 }
 
 export function Card({
@@ -20,19 +22,19 @@ export function Card({
   onCardNameChange,
   onCardDescriptionChange,
 }: CardProps) {
-  const [taskName, setTaskName] = useState(task.name);
-  const [taskDescription, setTaskDescription] = useState(task.description);
+  const [cardName, setCardName] = useState(task.name);
+  const [cardDescription, setCardDescription] = useState(task.description);
   const [isEditingName, setEditingName] = useState(false);
   const [isEditingDescription, setEditingDescription] = useState(false);
 
   const handleNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTaskName(e.target.value);
+    setCardName(e.target.value);
   };
 
   const handleDescriptionInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setTaskDescription(e.target.value);
+    setCardDescription(e.target.value);
   };
 
   const handleInputKeyDown = (
@@ -42,12 +44,17 @@ export function Card({
       setEditingName(false);
       setEditingDescription(false);
 
-      setTaskName((prevTaskName) => {
-        onCardNameChange(task.id, prevTaskName);
-        return prevTaskName;
+      setCardName((prevCardName) => {
+        onCardNameChange(task.id, prevCardName);
+        return prevCardName;
       });
 
-      onCardDescriptionChange(task.id, taskDescription);
+      setCardDescription((prevCardDescription) => {
+        onCardDescriptionChange(task.id, prevCardDescription);
+        return prevCardDescription;
+      });
+
+      onCardDescriptionChange(task.id, cardDescription);
     }
   };
 
@@ -60,9 +67,9 @@ export function Card({
   };
 
   useEffect(() => {
-    const storedTask = JSON.parse(localStorage.getItem(task.id) || "{}");
-    setTaskName(storedTask.name || task.name);
-    setTaskDescription(storedTask.description || task.description);
+    const storedCard = JSON.parse(localStorage.getItem(task.id) || "{}");
+    setCardName(storedCard.name || task.name);
+    setCardDescription(storedCard.description || task.description);
   }, [task.id, task.name, task.description]);
 
   return (
@@ -79,38 +86,38 @@ export function Card({
               <Input
                 type="text"
                 placeholder={task.name}
-                className="modal-input"
+                className="modal-input modal-input-editing"
                 onChange={handleNameInputChange}
                 onKeyDown={handleInputKeyDown}
-                value={taskName}
+                value={cardName}
                 onBlur={() => {
                   setEditingName(false);
-                  onCardNameChange(task.id, taskName);
+                  onCardNameChange(task.id, cardName);
                 }}
                 autoFocus
               />
             ) : (
               <p className="card-title" onClick={handleClickName}>
-                {taskName}
+                {cardName}
               </p>
             )}
 
             {isEditingDescription ? (
               <textarea
                 placeholder={task.description}
-                className="modal-input"
+                className="modal-input textarea-editing"
                 onChange={handleDescriptionInputChange}
                 onKeyDown={handleInputKeyDown}
-                value={taskDescription}
+                value={cardDescription}
                 onBlur={() => {
                   setEditingDescription(false);
-                  onCardDescriptionChange(task.id, taskDescription);
+                  onCardDescriptionChange(task.id, cardDescription);
                 }}
                 autoFocus
               />
             ) : (
               <p className="card-description" onClick={handleClickDescription}>
-                {taskDescription}
+                {cardDescription}
               </p>
             )}
           </div>

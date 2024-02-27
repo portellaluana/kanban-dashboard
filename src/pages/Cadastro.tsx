@@ -1,7 +1,7 @@
 import { AppContext } from "../context/AppContext";
 import { useContext, useState } from "react";
 import Button from "../components/buttons/Button";
-import Input from "../components/inputs/input";
+import Input from "../components/inputs/Input";
 import Dashboard from "./Dashboard";
 import { Link } from "react-router-dom";
 

@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 import Button from "../components/buttons/Button";
-import Input from "../components/inputs/input";
+import Input from "../components/inputs/Input";
 import { Login } from "./Login";
 import { Header } from "../components/header/Header";
 import { Link } from "react-router-dom";
