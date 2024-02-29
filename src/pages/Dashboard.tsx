@@ -150,7 +150,6 @@ function Dashboard() {
     localStorage.removeItem("logado");
     localStorage.removeItem("usuario");
     localStorage.removeItem("cadastro");
-    navigate("/kanban-dashboard/login");
 
   }
 
