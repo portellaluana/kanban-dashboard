@@ -33,6 +33,9 @@ export interface AppContextProps {
 
   logado: boolean;
   setLogado: Dispatch<SetStateAction<boolean>>;
+
+  showPassword: boolean;
+  setShowPassword: Dispatch<SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextProps | null>(null);

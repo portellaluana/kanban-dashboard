@@ -1,8 +1,8 @@
 import { Draggable } from "@hello-pangea/dnd";
 import { useState, useEffect } from "react";
 import Input from "../inputs/Input";
-import './card.css'
-
+import "./card.css";
+import Button from "../buttons/Button";
 
 interface CardProps {
   task: {
@@ -66,6 +66,9 @@ export function Card({
     setEditingDescription(true);
   };
 
+  const onDelete = () => {
+    console.log("clicou");
+  };
   useEffect(() => {
     const storedCard = JSON.parse(localStorage.getItem(task.id) || "{}");
     setCardName(storedCard.name || task.name);
@@ -99,6 +102,9 @@ export function Card({
             ) : (
               <p className="card-title" onClick={handleClickName}>
                 {cardName}
+                <Button className="botao-close" onClick={onDelete}>
+                  x
+                </Button>
               </p>
             )}
 

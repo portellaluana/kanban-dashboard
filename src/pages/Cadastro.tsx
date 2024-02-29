@@ -3,13 +3,15 @@ import { useContext, useState } from "react";
 import Button from "../components/buttons/Button";
 import Input from "../components/inputs/Input";
 import Dashboard from "./Dashboard";
-import { Link } from "react-router-dom";
+import "./cadastro.css";
+import { useNavigate } from 'react-router-dom';
 
 export const Cadastro = () => {
   const context = useContext(AppContext);
   const [emailValido, setEmailValido] = useState(true);
   const [senhaConfere, setSenhaConfere] = useState(true);
-
+  const navigate = useNavigate();
+  
   if (!context) {
     return null;
   }
@@ -26,6 +28,8 @@ export const Cadastro = () => {
     user,
     logo,
     setLogoOff,
+    showPassword,
+    setShowPassword,
   } = context;
 
   const handleLogin = () => {
@@ -41,12 +45,16 @@ export const Cadastro = () => {
       const novoCadastro = { userName, userEmail, userPassword };
       localStorage.setItem("cadastro", JSON.stringify([...user, novoCadastro]));
     }
+    navigate("/kanban-dashboard/login");
   };
 
   function changeLogo() {
     setLogoOff(!logo);
   }
-
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+    setLogoOff(!logo);
+  };
   return (
     <>
       {localStorage.getItem("cadastro") ? (
@@ -54,7 +62,7 @@ export const Cadastro = () => {
       ) : (
         <div className="modal-container">
           <div className="modal-content">
-            {logo ? <a className="logo" /> : <a className="logo-off" />}
+          {logo ? <div className="logo" /> : <div className="logo-off" />}
             <Input
               type="text"
               placeholder="Nome"
@@ -75,7 +83,7 @@ export const Cadastro = () => {
               ""
             )}
             <Input
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="modal-input input-ativo"
               placeholder="Senha"
               value={userPassword}
@@ -83,9 +91,19 @@ export const Cadastro = () => {
               onFocus={changeLogo}
               onBlur={changeLogo}
             />
-
+            <a
+              type="button"
+              className="password-icon"
+              onClick={toggleShowPassword}
+            >
+              {showPassword ? (
+                <a className="hide-password-1" onClick={toggleShowPassword} />
+              ) : (
+                <a className="show-password-1" onClick={toggleShowPassword} />
+              )}
+            </a>
             <Input
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="modal-input input-ativo"
               placeholder="Confirmação de senha"
               value={confirmaUserPassword}
@@ -93,12 +111,22 @@ export const Cadastro = () => {
               onBlur={changeLogo}
               onChange={(e) => setConfirmaUserPassword(e.target.value)}
             />
+            <a
+              type="button"
+              className="password-icon"
+              onClick={toggleShowPassword}
+            >
+              {showPassword ? (
+                <a className="hide-password-2" onClick={toggleShowPassword} />
+              ) : (
+                <a className="show-password-2" onClick={toggleShowPassword} />
+              )}
+            </a>
             {!senhaConfere ? (
               <p className="input-error">Senhas não conferem</p>
             ) : (
               ""
             )}
-            <Link to="/kanban-dashboard/login">
               <Button
                 type="submit"
                 onClick={handleLogin}
@@ -106,7 +134,6 @@ export const Cadastro = () => {
               >
                 cadastrar
               </Button>
-            </Link>
           </div>
         </div>
       )}

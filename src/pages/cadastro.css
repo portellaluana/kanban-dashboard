@@ -1,0 +1,48 @@
+
+.password-icon{
+    position: absolute;
+  }
+  a .hide-password-1{
+    background-image: url(../assets/hide-password.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 16px;
+    height: 16px;
+    margin: 4px;
+    position: relative;
+    top: 313px;
+    left: 268px;
+  }
+  a .show-password-1{
+    background-image: url(../assets/show-password.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 16px;
+    height: 16px;
+    margin: 4px;
+    position: relative;
+    top: 313px;
+    left: 268px;
+  }
+  a .hide-password-2{
+    background-image: url(../assets/hide-password.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 16px;
+    height: 16px;
+    margin: 4px;
+    position: relative;
+    top: 378px;
+    left: 268px;
+  }
+  a .show-password-2{
+    background-image: url(../assets/show-password.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 16px;
+    height: 16px;
+    margin: 4px;
+    position: relative;
+    top: 378px;
+    left: 268px;
+  }

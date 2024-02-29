@@ -150,6 +150,8 @@ function Dashboard() {
     localStorage.removeItem("logado");
     localStorage.removeItem("usuario");
     localStorage.removeItem("cadastro");
+    navigate("/kanban-dashboard/login");
+
   }
 
   function handleCardNameChange(taskId: string, newName: string) {
@@ -221,7 +223,7 @@ function Dashboard() {
                 <option value="fazendo">Fazendo</option>
                 <option value="feito">Feito</option>
               </select>
-              <Button type="submit" className="button-add">
+              <Button type="submit" className="botao-add">
                 criar tarefa
               </Button>
             </form>
@@ -229,7 +231,7 @@ function Dashboard() {
             <div className="form-container">
               <Button
                 type="submit"
-                className="button-plus"
+                className="botao-plus"
                 onClick={openModalTarefa}
               >
                 +

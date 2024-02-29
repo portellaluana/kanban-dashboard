@@ -38,6 +38,9 @@ interface AppContextProps {
 
   logado: boolean;
   setLogado: Dispatch<SetStateAction<boolean>>;
+
+  showPassword: boolean;
+  setShowPassword: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Provider: React.FC<ProviderProps> = ({ children }) => {
@@ -52,6 +55,7 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
   const [statusTarefa, setStatusTarefa] = useState<string>("a-fazer");
   const [open, setOpen] = useState<boolean>(false);
   const [logado, setLogado] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const value: AppContextProps = {
     userName,
@@ -76,6 +80,7 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
     setOpen,
     logado,
     setLogado,
+    showPassword, setShowPassword
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

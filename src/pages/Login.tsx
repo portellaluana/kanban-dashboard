@@ -4,6 +4,7 @@ import Button from "../components/buttons/Button";
 import Input from "../components/inputs/Input";
 import { Link } from "react-router-dom";
 import { Cadastro } from "./Cadastro";
+import './login.css'
 
 export const Login = () => {
   const context = useContext(AppContext);
@@ -22,6 +23,8 @@ export const Login = () => {
     setUserPassword,
     logado,
     setLogado,
+    showPassword,
+    setShowPassword,
   } = context;
 
   const handleLogin = () => {
@@ -41,6 +44,11 @@ export const Login = () => {
     localStorage.setItem("logado", JSON.stringify(!logado));
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+    setLogoOff(!logo);
+  };
+
   function changeLogo() {
     setLogoOff(!logo);
   }
@@ -50,11 +58,7 @@ export const Login = () => {
       {localStorage.getItem("cadastro") ? (
         <div className="modal-container">
           <div className="modal-content">
-            {logo ? (
-              <a className="logo-icon" />
-            ) : (
-              <a className="logo-icon-off" />
-            )}
+          {logo ? <div className="logo-icon" /> : <div className="logo-icon-off" />}
             <Input
               type="text"
               placeholder="Email"
@@ -63,7 +67,7 @@ export const Login = () => {
               onChange={(e) => setUserEmail(e.target.value)}
             />
             <Input
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="modal-input"
               placeholder="Senha"
               value={userPassword}
@@ -71,14 +75,25 @@ export const Login = () => {
               onFocus={changeLogo}
               onBlur={changeLogo}
             />
-            <Link to="/kanban-dashboard/dashboard">
-            <Button
-              type="submit"
-              onClick={handleLogin}
-              className="botao-primario"
+            <a
+              type="button"
+              className="password-icon"
+              onClick={toggleShowPassword}
             >
-              fazer login
-            </Button>
+              {showPassword ? (
+                <a className="hide-password-login" onClick={toggleShowPassword} />
+              ) : (
+                <a className="show-password-login" onClick={toggleShowPassword} />
+              )}
+            </a>
+            <Link to="/kanban-dashboard/dashboard">
+              <Button
+                type="submit"
+                onClick={handleLogin}
+                className="botao-primario"
+              >
+                fazer login
+              </Button>
             </Link>
           </div>
         </div>

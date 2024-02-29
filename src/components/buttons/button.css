@@ -32,22 +32,8 @@
   width: 100% !important;
   text-align: center !important;
 }
-.card-title button {
-  background-color: rgb(255, 255, 255);
-  color: rgb(175, 175, 175);
-  font-weight: 800;
-  border-radius: 100px;
-  border: none;
-  width: 12px;
-  height: 20px;
-  text-align: end;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  cursor: pointer;
-  padding: 0;
-}
-.button-add {
+
+.botao-add {
   background-color: black;
   color: white;
   padding: 8px 16px;
@@ -63,7 +49,7 @@
   font-size: 1rem;
   font-weight: 600;
 }
-.button-plus {
+.botao-plus {
   background-color: black;
   color: white;
   font-weight: 800;
@@ -76,4 +62,19 @@
   display: flex;
   cursor: pointer;
   font-size: 1rem;
+}
+.botao-close{
+  background-color: rgb(255, 255, 255);
+  color: rgb(175, 175, 175);
+  font-weight: 800;
+  border-radius: 100px;
+  border: none;
+  width: 12px;
+  height: 20px;
+  text-align: end;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 0;
 }
