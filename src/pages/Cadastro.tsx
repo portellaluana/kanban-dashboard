@@ -30,6 +30,8 @@ export const Cadastro = () => {
     setLogoOff,
     showPassword,
     setShowPassword,
+    showConfirmaPassword,
+    setShowConfirmaPassword
   } = context;
 
   const handleLogin = () => {
@@ -51,8 +53,14 @@ export const Cadastro = () => {
   function changeLogo() {
     setLogoOff(!logo);
   }
+
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
+    setLogoOff(!logo);
+  };
+
+  const toggleShowConfirmaPassword = () => {
+    setShowConfirmaPassword(!showConfirmaPassword);
     setLogoOff(!logo);
   };
   return (
@@ -60,20 +68,18 @@ export const Cadastro = () => {
       {localStorage.getItem("cadastro") ? (
         <Dashboard />
       ) : (
-        <div className="modal-container">
-          <div className="modal-content">
+        <div className="container">
+          <div className="content">
           {logo ? <div className="logo" /> : <div className="logo-off" />}
             <Input
               type="text"
               placeholder="Nome"
-              className="modal-input"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
             />
             <Input
               type="email"
               placeholder="Email"
-              className="modal-input"
               value={userEmail}
               onChange={(e) => setUserEmail(e.target.value)}
             />
@@ -84,7 +90,6 @@ export const Cadastro = () => {
             )}
             <Input
               type={showPassword ? "text" : "password"}
-              className="modal-input input-ativo"
               placeholder="Senha"
               value={userPassword}
               onChange={(e) => setUserPassword(e.target.value)}
@@ -103,8 +108,7 @@ export const Cadastro = () => {
               )}
             </a>
             <Input
-              type={showPassword ? "text" : "password"}
-              className="modal-input input-ativo"
+              type={showConfirmaPassword ? "text" : "password"}
               placeholder="Confirmação de senha"
               value={confirmaUserPassword}
               onFocus={changeLogo}
@@ -114,12 +118,12 @@ export const Cadastro = () => {
             <a
               type="button"
               className="password-icon"
-              onClick={toggleShowPassword}
+              onClick={toggleShowConfirmaPassword}
             >
-              {showPassword ? (
-                <a className="hide-password-2" onClick={toggleShowPassword} />
+              {showConfirmaPassword ? (
+                <a className="hide-password-2" onClick={toggleShowConfirmaPassword} />
               ) : (
-                <a className="show-password-2" onClick={toggleShowPassword} />
+                <a className="show-password-2" onClick={toggleShowConfirmaPassword} />
               )}
             </a>
             {!senhaConfere ? (

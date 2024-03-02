@@ -90,17 +90,17 @@ h4 {
   margin: 16px 0;
   height: 70px;
 }
-.modal-container {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
-.modal-content {
+.content {
   display: inline-flex;
   flex-direction: column;
 }
-.modal-input {
+input {
   margin: 8px 0;
   min-width: 300px;
   min-height: 48px;
@@ -151,18 +151,6 @@ h4 {
 }
 .menu-icon {
   margin: 0 !important;
-}
-.background-modal-sets {
-  background-color: white;
-  width: 162px;
-  height: 68px;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: end;
-  padding: 0 16px;
-  box-shadow: 1px 2px 9px 0px #808080;
-  border-radius: 4px;
 }
 .input-error {
   font-size: 0.75rem;

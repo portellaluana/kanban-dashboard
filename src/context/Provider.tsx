@@ -18,8 +18,8 @@ interface AppContextProps {
   confirmaUserPassword: string;
   setConfirmaUserPassword: Dispatch<SetStateAction<string>>;
 
-  user: string;  
-  setUser: Dispatch<SetStateAction<string>>;  
+  user: string;
+  setUser: Dispatch<SetStateAction<string>>;
 
   logo: boolean;
   setLogoOff: Dispatch<SetStateAction<boolean>>;
@@ -41,6 +41,12 @@ interface AppContextProps {
 
   showPassword: boolean;
   setShowPassword: Dispatch<SetStateAction<boolean>>;
+
+  showConfirmaPassword: boolean;
+  setShowConfirmaPassword: Dispatch<SetStateAction<boolean>>;
+
+  openModal: boolean;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Provider: React.FC<ProviderProps> = ({ children }) => {
@@ -48,14 +54,17 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
   const [userEmail, setUserEmail] = useState<string>("");
   const [userPassword, setUserPassword] = useState<string>("");
   const [confirmaUserPassword, setConfirmaUserPassword] = useState<string>("");
-  const [user, setUser] = useState<string>(""); 
+  const [user, setUser] = useState<string>("");
   const [logo, setLogoOff] = useState<boolean>(true);
   const [nomeTarefa, setNomeTarefa] = useState<string>("");
   const [descricaoTarefa, setDescricaoTarefa] = useState<string>("");
   const [statusTarefa, setStatusTarefa] = useState<string>("a-fazer");
   const [open, setOpen] = useState<boolean>(false);
   const [logado, setLogado] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmaPassword, setShowConfirmaPassword] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
 
   const value: AppContextProps = {
     userName,
@@ -67,7 +76,7 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
     confirmaUserPassword,
     setConfirmaUserPassword,
     user,
-    setUser,  
+    setUser,
     logo,
     setLogoOff,
     nomeTarefa,
@@ -80,7 +89,12 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
     setOpen,
     logado,
     setLogado,
-    showPassword, setShowPassword
+    showPassword,
+    setShowPassword,
+    showConfirmaPassword,
+    setShowConfirmaPassword,
+    openModal,
+    setOpenModal
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

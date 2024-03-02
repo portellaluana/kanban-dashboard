@@ -1,8 +1,9 @@
 import { Draggable } from "@hello-pangea/dnd";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Input from "../inputs/Input";
 import "./card.css";
 import Button from "../buttons/Button";
+import { AppContext } from "../../context/AppContext";
 
 interface CardProps {
   task: {
@@ -27,6 +28,14 @@ export function Card({
   const [isEditingName, setEditingName] = useState(false);
   const [isEditingDescription, setEditingDescription] = useState(false);
 
+  const context = useContext(AppContext);
+
+  if (!context) {
+    return null;
+  }
+
+  const { openModal, setOpenModal } = context;
+  
   const handleNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCardName(e.target.value);
   };
@@ -66,9 +75,13 @@ export function Card({
     setEditingDescription(true);
   };
 
-  const onDelete = () => {
-    console.log("clicou");
-  };
+  function abrirModal() {
+    setOpenModal(!openModal);
+  }
+
+  // const onDelete = () => {
+  //   console.log("clicou");
+  // };
   useEffect(() => {
     const storedCard = JSON.parse(localStorage.getItem(task.id) || "{}");
     setCardName(storedCard.name || task.name);
@@ -89,7 +102,7 @@ export function Card({
               <Input
                 type="text"
                 placeholder={task.name}
-                className="modal-input modal-input-editing"
+                className="card-input card-input-editing"
                 onChange={handleNameInputChange}
                 onKeyDown={handleInputKeyDown}
                 value={cardName}
@@ -102,16 +115,15 @@ export function Card({
             ) : (
               <p className="card-title" onClick={handleClickName}>
                 {cardName}
-                <Button className="botao-close" onClick={onDelete}>
+                <Button className="botao-close" onClick={abrirModal}>
                   x
                 </Button>
               </p>
             )}
-
             {isEditingDescription ? (
               <textarea
                 placeholder={task.description}
-                className="modal-input textarea-editing"
+                className="card-input textarea-editing"
                 onChange={handleDescriptionInputChange}
                 onKeyDown={handleInputKeyDown}
                 value={cardDescription}

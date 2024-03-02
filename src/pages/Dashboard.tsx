@@ -8,6 +8,7 @@ import Input from "../components/inputs/Input";
 import { Login } from "./Login";
 import { Header } from "../components/header/Header";
 import { Link } from "react-router-dom";
+import { Modal } from "../components/modal/Modal";
 
 interface CardsProps {
   id: string;
@@ -282,6 +283,7 @@ function Dashboard() {
           excluir conta
         </Button>
       </Link>
+      <Modal/>
     </>
   );
 }

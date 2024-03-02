@@ -36,6 +36,12 @@ export interface AppContextProps {
 
   showPassword: boolean;
   setShowPassword: Dispatch<SetStateAction<boolean>>;
+
+  showConfirmaPassword: boolean;
+  setShowConfirmaPassword: Dispatch<SetStateAction<boolean>>;
+
+  openModal: boolean;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextProps | null>(null);

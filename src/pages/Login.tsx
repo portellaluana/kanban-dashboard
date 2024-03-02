@@ -56,19 +56,17 @@ export const Login = () => {
   return (
     <>
       {localStorage.getItem("cadastro") ? (
-        <div className="modal-container">
-          <div className="modal-content">
+        <div className="container">
+          <div className="content">
           {logo ? <div className="logo-icon" /> : <div className="logo-icon-off" />}
             <Input
               type="text"
               placeholder="Email"
-              className="modal-input"
               value={userEmail}
               onChange={(e) => setUserEmail(e.target.value)}
             />
             <Input
               type={showPassword ? "text" : "password"}
-              className="modal-input"
               placeholder="Senha"
               value={userPassword}
               onChange={(e) => setUserPassword(e.target.value)}
