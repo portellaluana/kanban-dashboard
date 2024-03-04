@@ -244,7 +244,7 @@ function Dashboard() {
                 <option value="fazendo">Fazendo</option>
                 <option value="feito">Feito</option>
               </select>
-              <Button type="submit" className="botao-add">
+              <Button className="botao-add">
                 criar tarefa
               </Button>
             </form>
