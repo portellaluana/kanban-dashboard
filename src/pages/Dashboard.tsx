@@ -45,6 +45,8 @@ function Dashboard() {
     setStatusTarefa,
     open,
     setOpen,
+    modalExcluirTarefa, setModalExcluirTarefa
+
   } = context;
 
   function handleAddTask(
@@ -62,7 +64,7 @@ function Dashboard() {
 
       if (colunaFeito) {
         const novaTarefa = {
-          id: `${colunaFeito.tasks} ${Math.floor(Math.random() * 100)}`,
+          id: geradorID(),
           name: nomeTarefa,
           description: descricaoTarefa,
           status: statusTarefa,
@@ -90,7 +92,7 @@ function Dashboard() {
     const colunaAlvo = { ...colunas[colunaAlvoIndex] };
 
     const novaTarefa = {
-      id: `${colunaAlvo.tasks} ${Math.floor(Math.random() * 100)}`,
+      id: geradorID(),
       name: nomeTarefa,
       description: descricaoTarefa,
       status: statusTarefa,
@@ -106,6 +108,19 @@ function Dashboard() {
     setNomeTarefa("");
     setDescricaoTarefa("");
     setStatusTarefa("a-fazer");
+  }
+
+  function geradorID(): string {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let randomId = "";
+
+    for (let i = 0; i < 12; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      randomId += characters.charAt(randomIndex);
+    }
+
+    return randomId;
   }
 
   function onDragEnd(result: DropResult) {
@@ -151,7 +166,9 @@ function Dashboard() {
     localStorage.removeItem("logado");
     localStorage.removeItem("usuario");
     localStorage.removeItem("cadastro");
-
+    localStorage.removeItem("tarefas-a-fazer");
+    localStorage.removeItem("tarefas-fazendo");
+    localStorage.removeItem("tarefas-prontas");
   }
 
   function handleCardNameChange(taskId: string, newName: string) {
@@ -176,6 +193,10 @@ function Dashboard() {
 
     setColunas(updatedColunas);
     atualizaLocalStorage(updatedColunas);
+  }
+
+  function abrirModal() {
+    setModalExcluirTarefa(!modalExcluirTarefa); 
   }
 
   useEffect(() => {
@@ -283,7 +304,23 @@ function Dashboard() {
           excluir conta
         </Button>
       </Link>
-      <Modal/>
+      {modalExcluirTarefa ? (
+      <Modal>
+      <div className="filter">
+        <div className="modal-container">
+          <div className="modal-content">
+            <h4 className="modal-title">Excluir tarefa?</h4>
+            <div className="modal-content-button">
+              <Button className="botao-primario-modal" onClick={abrirModal}>
+                não excluir
+              </Button>
+              <Button className="botao-secundario-modal">excluir</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </Modal>
+      ) : null}
     </>
   );
 }

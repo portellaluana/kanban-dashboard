@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
 import Button from "../buttons/Button";
 import "./header.css";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import { useNavigate } from 'react-router-dom';
+
 
 export const Header = () => {
   const context = useContext(AppContext);
+  const navigate = useNavigate();
 
   if (!context) {
     return null;
@@ -19,6 +21,7 @@ export const Header = () => {
     setLogado(!logado);
     localStorage.setItem("logado", JSON.stringify(!logado));
     localStorage.removeItem("usuario");
+    navigate("/kanban-dashboard/login");
   }
 
   return (
@@ -31,11 +34,9 @@ export const Header = () => {
           </li>
         </ul>
         <a className="icon-sair" />
-        <Link to="/kanban-dashboard/login">
           <Button type="submit" className="botao-secundario" onClick={deslogar}>
             sair
           </Button>
-        </Link>
       </div>
     </div>
   );

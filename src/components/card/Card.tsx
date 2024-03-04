@@ -34,16 +34,16 @@ export function Card({
     return null;
   }
 
-  const { openModal, setOpenModal } = context;
+  const {modalExcluirTarefa, setModalExcluirTarefa } = context;
   
   const handleNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCardName(e.target.value);
+    setCardName(e.currentTarget.value);
   };
 
   const handleDescriptionInputChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setCardDescription(e.target.value);
+    setCardDescription(e.currentTarget.value);
   };
 
   const handleInputKeyDown = (
@@ -76,12 +76,9 @@ export function Card({
   };
 
   function abrirModal() {
-    setOpenModal(!openModal);
+    setModalExcluirTarefa(!modalExcluirTarefa); 
   }
 
-  // const onDelete = () => {
-  //   console.log("clicou");
-  // };
   useEffect(() => {
     const storedCard = JSON.parse(localStorage.getItem(task.id) || "{}");
     setCardName(storedCard.name || task.name);
@@ -102,7 +99,7 @@ export function Card({
               <Input
                 type="text"
                 placeholder={task.name}
-                className="card-input card-input-editing"
+                className="card-input-editing"
                 onChange={handleNameInputChange}
                 onKeyDown={handleInputKeyDown}
                 value={cardName}
@@ -113,17 +110,19 @@ export function Card({
                 autoFocus
               />
             ) : (
+              <div className="content-card-title">
               <p className="card-title" onClick={handleClickName}>
                 {cardName}
+              </p>
                 <Button className="botao-close" onClick={abrirModal}>
                   x
                 </Button>
-              </p>
+                </div>
             )}
             {isEditingDescription ? (
               <textarea
                 placeholder={task.description}
-                className="card-input textarea-editing"
+                className="textarea-editing"
                 onChange={handleDescriptionInputChange}
                 onKeyDown={handleInputKeyDown}
                 value={cardDescription}

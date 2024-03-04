@@ -21,6 +21,16 @@ select {
   width: 100%;
   margin: 16px 8px;
   box-sizing: border-box;
+  min-height: 48px;
+}
+textarea, select{
+  border-radius: 4px;
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+}
+textarea{
+display: flex;
+align-items: center;
 }
 a {
   text-decoration: none;
@@ -36,9 +46,11 @@ a {
 form {
   display: inline-flex;
   flex-direction: row;
+  align-items: center;
   margin: 16px 0;
   width: 100%;
   height: 70px;
+  gap: 12px;
 }
 h4 {
   margin: 8px;
@@ -63,24 +75,7 @@ h4 {
   min-height: 200px;
   /* margin: 8px; */
 }
-.card {
-  margin: 8px;
-}
-.card-container {
-  background-color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-}
-.card-title {
-  font-weight: 500;
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-}
-.card-description {
-  font-weight: 300;
-  margin: 4px 0 0 0;
-}
+
 
 .form-container {
   display: inline-flex;
@@ -152,11 +147,6 @@ input {
 .menu-icon {
   margin: 0 !important;
 }
-.input-error {
-  font-size: 0.75rem;
-  margin: 0 0 8px 0;
-  color: red;
-}
 @media screen and (max-width: 1040px) {
   .colunas {
     grid-template-columns: 1fr;
@@ -168,6 +158,7 @@ input {
     grid-template-columns: 1fr;
     margin: 0;
     height: 100%;
+    gap: 0;
   }
   input,
   textarea,

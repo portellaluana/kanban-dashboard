@@ -1,0 +1,26 @@
+.card {
+    margin: 8px;
+  }
+  .card-container {
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+  .card-title {
+    font-weight: 500;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .card-description {
+    font-weight: 300;
+    margin: 4px 0 0 0;
+  }
+.content-card-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-input-editing, .textarea-editing{
+    min-width: 200px !important;
+}

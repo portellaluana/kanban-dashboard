@@ -45,8 +45,8 @@ interface AppContextProps {
   showConfirmaPassword: boolean;
   setShowConfirmaPassword: Dispatch<SetStateAction<boolean>>;
 
-  openModal: boolean;
-  setOpenModal: Dispatch<SetStateAction<boolean>>;
+  modalExcluirTarefa: boolean;
+  setModalExcluirTarefa: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Provider: React.FC<ProviderProps> = ({ children }) => {
@@ -63,7 +63,8 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
   const [logado, setLogado] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmaPassword, setShowConfirmaPassword] = useState<boolean>(false);
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [modalExcluirTarefa, setModalExcluirTarefa] = useState<boolean>(false);
+
 
 
   const value: AppContextProps = {
@@ -93,8 +94,8 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
     setShowPassword,
     showConfirmaPassword,
     setShowConfirmaPassword,
-    openModal,
-    setOpenModal
+    modalExcluirTarefa,
+    setModalExcluirTarefa
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

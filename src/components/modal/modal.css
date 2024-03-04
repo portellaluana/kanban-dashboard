@@ -1,5 +1,5 @@
 .modal-container {
-  min-width: 300px;
+  width: 332px;
   display: block;
   background-color: white;
   border-radius: 8px;
@@ -7,9 +7,13 @@
   align-items: center;
   justify-content: center;
 overflow: hidden;
+position: absolute;
+
 }
 .modal-content {
   padding: 8px 16px;
+  display: inline-flex;
+  flex-direction: column;
 }
 .modal-content-button {
   display: inline-flex;
@@ -49,9 +53,11 @@ overflow: hidden;
   padding: 8px;
   width: 200px;
 }
-.botao-primario-modal:hover,
-.botao-secundario-modal:hover {
+.botao-primario-modal:hover{
   background-color: rgb(26, 26, 26);
+}
+.botao-secundario-modal:hover{
+  border: 1px solid rgba(0, 0, 0, 80%);
 }
 .filter{
     position: absolute;

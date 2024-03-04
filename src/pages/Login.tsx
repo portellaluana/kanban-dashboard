@@ -63,27 +63,21 @@ export const Login = () => {
               type="text"
               placeholder="Email"
               value={userEmail}
-              onChange={(e) => setUserEmail(e.target.value)}
+              onInput={(e) => setUserEmail(e.currentTarget.value)}
             />
             <Input
               type={showPassword ? "text" : "password"}
               placeholder="Senha"
               value={userPassword}
-              onChange={(e) => setUserPassword(e.target.value)}
+              onInput={(e) => setUserPassword(e.currentTarget.value)}
               onFocus={changeLogo}
               onBlur={changeLogo}
             />
-            <a
-              type="button"
-              className="password-icon"
-              onClick={toggleShowPassword}
-            >
-              {showPassword ? (
+            {showPassword ? (
                 <a className="hide-password-login" onClick={toggleShowPassword} />
               ) : (
                 <a className="show-password-login" onClick={toggleShowPassword} />
               )}
-            </a>
             <Link to="/kanban-dashboard/dashboard">
               <Button
                 type="submit"

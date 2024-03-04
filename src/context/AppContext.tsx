@@ -40,8 +40,8 @@ export interface AppContextProps {
   showConfirmaPassword: boolean;
   setShowConfirmaPassword: Dispatch<SetStateAction<boolean>>;
 
-  openModal: boolean;
-  setOpenModal: Dispatch<SetStateAction<boolean>>;
+  modalExcluirTarefa: boolean;
+  setModalExcluirTarefa: Dispatch<SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextProps | null>(null);
