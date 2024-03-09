@@ -31,6 +31,7 @@ function Dashboard() {
   ]);
 
   const context = useContext(AppContext);
+  const [tarefaExcluida, setTarefaExcluida] = useState<boolean>(false);
 
   if (!context) {
     return null;
@@ -45,8 +46,9 @@ function Dashboard() {
     setStatusTarefa,
     open,
     setOpen,
-    modalExcluirTarefa, setModalExcluirTarefa
-
+    modalExcluirTarefa,
+    setModalExcluirTarefa,
+    idTarefa
   } = context;
 
   function handleAddTask(
@@ -196,7 +198,58 @@ function Dashboard() {
   }
 
   function abrirModal() {
-    setModalExcluirTarefa(!modalExcluirTarefa); 
+    setModalExcluirTarefa(!modalExcluirTarefa);
+  }
+
+  function deletarTarefa() {
+    const tarefasAfazer = JSON.parse(localStorage["tarefas-a-fazer"]);
+    const tarefasFazendo = JSON.parse(localStorage["tarefas-fazendo"]);
+    const tarefasProntas = JSON.parse(localStorage["tarefas-prontas"]);
+
+    let apagar = false;
+    let indexDaTarefa;
+
+    for (const [index, element] of tarefasAfazer.entries()) {
+      if (element.id === idTarefa) {
+        indexDaTarefa = index;
+        apagar = true;
+        const novaLista = tarefasAfazer;
+
+        if (apagar) {
+          novaLista.splice(indexDaTarefa, 1);
+          localStorage.removeItem("tarefas-a-fazer");
+          localStorage.setItem("tarefas-a-fazer", JSON.stringify(novaLista));
+        }
+      }
+    }
+    for (const [index, element] of tarefasFazendo.entries()) {
+      if (element.id === idTarefa) {
+        indexDaTarefa = index;
+        apagar = true;
+        const novaLista = tarefasFazendo;
+
+        if (apagar) {
+          novaLista.splice(indexDaTarefa, 1);
+          localStorage.removeItem("tarefas-fazendo");
+          localStorage.setItem("tarefas-fazendo", JSON.stringify(novaLista));
+        }
+      }
+    }
+    for (const [index, element] of tarefasProntas.entries()) {
+      if (element.id === idTarefa) {
+        indexDaTarefa = index;
+        apagar = true;
+        const novaLista = tarefasProntas;
+
+        if (apagar) {
+          novaLista.splice(indexDaTarefa, 1);
+          localStorage.removeItem("tarefas-prontas");
+          localStorage.setItem("tarefas-prontas", JSON.stringify(novaLista));
+        }
+      }
+    }
+    abrirModal();
+    setTarefaExcluida(true);
   }
 
   useEffect(() => {
@@ -206,7 +259,7 @@ function Dashboard() {
     }));
 
     setColunas(storedcolunas);
-  }, []);
+  }, [tarefaExcluida]);
 
   return (
     <>
@@ -244,9 +297,7 @@ function Dashboard() {
                 <option value="fazendo">Fazendo</option>
                 <option value="feito">Feito</option>
               </select>
-              <Button className="botao-add">
-                criar tarefa
-              </Button>
+              <Button className="botao-add">criar tarefa</Button>
             </form>
           ) : (
             <div className="form-container">
@@ -305,21 +356,27 @@ function Dashboard() {
         </Button>
       </Link>
       {modalExcluirTarefa ? (
-      <Modal>
-      <div className="filter">
-        <div className="modal-container">
-          <div className="modal-content">
-            <h4 className="modal-title">Excluir tarefa?</h4>
-            <div className="modal-content-button">
-              <Button className="botao-primario-modal" onClick={abrirModal}>
-                não excluir
-              </Button>
-              <Button className="botao-secundario-modal">excluir</Button>
+        <Modal>
+          <div className="filter">
+            <div className="modal-container">
+              <div className="modal-content">
+                <h4 className="modal-title">Excluir tarefa?</h4>
+                <div className="modal-content-button">
+                  <Button className="botao-primario-modal" onClick={abrirModal}>
+                    não excluir
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="botao-secundario-modal"
+                    onClick={deletarTarefa}
+                  >
+                    excluir
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      </Modal>
+        </Modal>
       ) : null}
     </>
   );

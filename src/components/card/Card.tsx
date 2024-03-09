@@ -34,7 +34,7 @@ export function Card({
     return null;
   }
 
-  const {modalExcluirTarefa, setModalExcluirTarefa } = context;
+  const {modalExcluirTarefa, setModalExcluirTarefa, setIdTarefa } = context;
   
   const handleNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCardName(e.currentTarget.value);
@@ -77,6 +77,7 @@ export function Card({
 
   function abrirModal() {
     setModalExcluirTarefa(!modalExcluirTarefa); 
+    setIdTarefa(String(task.id))
   }
 
   useEffect(() => {

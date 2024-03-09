@@ -42,6 +42,9 @@ export interface AppContextProps {
 
   modalExcluirTarefa: boolean;
   setModalExcluirTarefa: Dispatch<SetStateAction<boolean>>;
+
+  idTarefa: string;
+  setIdTarefa: Dispatch<SetStateAction<string>>;
 }
 
 export const AppContext = createContext<AppContextProps | null>(null);
